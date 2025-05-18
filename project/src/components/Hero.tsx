@@ -1,67 +1,99 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Hero() {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
-  useEffect(() => {
-    const video = document.getElementById('heroVideo') as HTMLVideoElement;
-    if (video) {
-      video.addEventListener('loadeddata', () => {
-        setIsVideoLoaded(true);
-      });
-    }
-    return () => {
-      if (video) {
-        video.removeEventListener('loadeddata', () => {
-          setIsVideoLoaded(true);
-        });
-      }
-    };
-  }, []);
+  const [imageError, setImageError] = useState(true);
 
   return (
-    <div className="relative min-h-screen overflow-hidden pt-16">
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <video 
-          id="heroVideo"
-          className={`object-cover w-full h-full transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-        >
-          <source src="/videos/Landingpage_Intro_(quer).MOV" type="video/quicktime" />
-          Ihr Browser unterstützt kein Video-Tag.
-        </video>
-        
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-[#0f1819] bg-opacity-60"></div>
-      </div>
-      
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 h-screen flex flex-col justify-center items-center text-center">
-        <div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight">
-            <span className="block mb-2">Entfalte dein</span>
-            <span className="text-[#D4AF37] block">volles Potenzial</span>
-          </h1>
+    <div className="bg-[#0f1819] min-h-screen">
+      <div className="container mx-auto px-4 pt-32 pb-16">
+        {/* Centered Content */}
+        <div className="max-w-4xl mx-auto">
+          {/* First row - KMU text centered */}
+          <div className="text-center mb-3">
+            <p className="text-base text-white">
+              Für ambitionierte KMU mit 10–100 Mitarbeitenden
+            </p>
+          </div>
           
-          <p className="text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto">
-            Performance Coaching und Persönlichkeitsentwicklung für Menschen, die mehr aus ihrem Leben machen wollen
-          </p>
+          {/* Second row - Main headline centered */}
+          <div className="text-center mb-3">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white">
+              Die 5 strategischen Bereiche, die dir aktuell fehlen, um hochwertige Kunden- & Mitarbeiteranfragen zu gewinnen...
+            </h1>
+          </div>
           
-          <Link 
-            href="/kontakt#termin" 
-            className="px-10 py-4 border-2 border-white text-white text-lg font-medium hover:bg-white hover:text-[#0f1819] transition-colors inline-block"
-          >
-            Erstgespräch buchen
-          </Link>
+          {/* Third row - Subheadline centered */}
+          <div className="text-center mb-8">
+            <p className="text-sm md:text-base text-white">
+              ...und dein Unternehmen in 12 Monaten zum regionalen Marktführer zu machen.
+            </p>
+          </div>
+          
+          {/* Two column layout */}
+          <div className="flex flex-col lg:flex-row lg:gap-10">
+            {/* Left column - Image */}
+            <div className="lg:w-[38%] mb-6 lg:mb-0 mx-auto lg:mx-0">
+              <div className="bg-slate-600 rounded-lg w-full aspect-[4/5] flex items-center justify-center text-white">
+                <div className="text-center p-4">
+                  <div className="text-6xl mb-2 font-light">MT</div>
+                  <div className="text-xl">Michael Trüssel</div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right column - Checkpoints */}
+            <div className="lg:w-[62%] text-white">
+              {/* Checkpoints */}
+              <div className="space-y-5 mb-8">
+                <CheckpointItem>
+                  Verstehe, wie du durch gezielte Sichtbarkeit eine starke Marke aufbaust, die Vertrauen schafft
+                </CheckpointItem>
+                
+                <CheckpointItem>
+                  Erfahre, wie du mit einem durchdachten System konstant die richtigen Kunden anziehst
+                </CheckpointItem>
+                
+                <CheckpointItem>
+                  Entdecke, wie du dich als attraktiver Arbeitgeber positionierst und passende Mitarbeitenden anziehst
+                </CheckpointItem>
+                
+                <CheckpointItem>
+                  Nutze unsere erprobten Qualifizierungsprozesse, um nur noch Gespräche mit Interessenten zu führen, die bereit sind zu kaufen
+                </CheckpointItem>
+              </div>
+              
+              {/* CTA Button */}
+              <div className="flex justify-center">
+                <Link 
+                  href="/kontakt#termin" 
+                  className="block w-full max-w-md py-3 text-base font-medium text-center text-[#0f1819] bg-gradient-to-r from-[#D4AF37] to-[#FFC832] rounded-full hover:opacity-90 transition-opacity"
+                >
+                  Jetzt Erstgespräch buchen
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function CheckpointItem({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-start gap-3">
+      <div className="flex-shrink-0 mt-1">
+        <div className="w-5 h-5 bg-[#D4AF37] rounded-sm flex items-center justify-center">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12L10 17L20 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <p className="text-sm leading-tight">{children}</p>
     </div>
   );
 } 

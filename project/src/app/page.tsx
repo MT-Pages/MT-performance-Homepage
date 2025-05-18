@@ -5,16 +5,14 @@ import dynamic from 'next/dynamic';
 // Dynamically import components
 const Header = dynamic(() => import('@/components/Header'), { ssr: true });
 const Hero = dynamic(() => import('@/components/Hero'));
-const ServiceSection = dynamic(() => import('@/components/ServiceSection'), { ssr: true });
 const Footer = dynamic(() => import('@/components/Footer'), { ssr: true });
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#0f1819]">
       <Header />
-      <main className="flex-grow pt-16">
+      <main className="flex-grow">
         <Hero />
-        <ServiceSection />
         {/* Add more sections here */}
       </main>
       <Footer />

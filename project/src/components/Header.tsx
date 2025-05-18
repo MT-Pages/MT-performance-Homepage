@@ -9,15 +9,15 @@ export default function Header() {
 
   return (
     <header className="fixed w-full bg-[#0f1819] z-50">
-      <div className="container mx-auto px-4 py-4 flex items-center">
+      <div className="container mx-auto px-6 md:px-8 lg:px-12 py-4 flex items-center">
         {/* Logo - Left */}
         <div className="flex-shrink-0 mr-auto">
           <Link href="/" className="flex items-center">
             <Image 
               src="/images/Logo white_gold_transparent.png" 
               alt="Michael Trüssel Performance" 
-              width={180} 
-              height={60}
+              width={160} 
+              height={55}
               className="h-auto object-contain"
             />
           </Link>
@@ -26,13 +26,13 @@ export default function Header() {
         {/* Desktop Navigation - Center */}
         <div className="hidden lg:flex justify-center mx-auto">
           <nav className="flex items-center">
-            <Link href="/ueber-mich" className="mx-6 text-white hover:text-gray-300 font-medium transition-colors">
+            <Link href="/ueber-mich" className="mx-8 text-white hover:text-gray-300 font-medium transition-colors">
               Über mich
             </Link>
-            <Link href="/kundenstimmen" className="mx-6 text-white hover:text-gray-300 font-medium transition-colors">
+            <Link href="/kundenstimmen" className="mx-8 text-white hover:text-gray-300 font-medium transition-colors">
               Kundenstimmen
             </Link>
-            <Link href="/so-arbeiten-wir" className="mx-6 text-white hover:text-gray-300 font-medium transition-colors">
+            <Link href="/so-arbeiten-wir" className="mx-8 text-white hover:text-gray-300 font-medium transition-colors">
               So arbeiten wir
             </Link>
           </nav>
