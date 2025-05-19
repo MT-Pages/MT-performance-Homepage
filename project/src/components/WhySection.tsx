@@ -1,10 +1,11 @@
 import React from 'react';
+import SectionTitle from './SectionTitle';
 
 export default function WhySection() {
   return (
     <section className="py-12">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-white text-xl font-bold mb-4">Warum „Online sein“ heute nicht mehr reicht – und Sichtbarkeit ohne System dein Wachstum ausbremst</h2>
+        <SectionTitle>Warum „Online sein“ heute nicht mehr reicht – und Sichtbarkeit ohne System dein Wachstum ausbremst</SectionTitle>
         <p className="text-white mb-2">Viele KMU investieren in hübsche Webseiten oder posten gelegentlich etwas auf Social Media – in der Hoffnung, sichtbar zu sein.</p>
         <p className="text-white mb-2">Doch Sichtbarkeit allein bringt keine qualifizierten Anfragen oder passenden Mitarbeitenden.</p>
         <p className="text-white mb-2">In einem Markt voller Austauschbarkeit entscheiden Vertrauen, Auftreten und strategische Präsenz darüber, wem Kunden und Bewerber ihr Interesse schenken.</p>
