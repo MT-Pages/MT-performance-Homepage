@@ -23,6 +23,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  background-image: url("/Meteor.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
 }
 
 /* Custom animations */
@@ -55,21 +60,21 @@ body {
 
 /* Gold color utility */
 .text-gold {
-  color: #D4AF37;
+  color: #d4af37;
 }
 
 .bg-gold {
-  background-color: #D4AF37;
+  background-color: #d4af37;
 }
 
 .hover\:bg-gold:hover {
-  background-color: #D4AF37;
+  background-color: #d4af37;
 }
 
 .hover\:text-gold:hover {
-  color: #D4AF37;
+  color: #d4af37;
 }
 
 .border-gold {
-  border-color: #D4AF37;
+  border-color: #d4af37;
 }
