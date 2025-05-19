@@ -19,18 +19,20 @@ export default function Hero() {
             …und dein Unternehmen in 12 Monaten zum regionalen Marktführer zu machen.
           </p>
         </div>
-        {/* Content: Image & Checklist */}
-        <div className="flex flex-col md:flex-row md:items-center md:gap-8 bg-[#151e1f] rounded-2xl p-4 md:p-6 shadow-lg">
-          {/* Left: Portrait */}
-          <div className="flex-shrink-0 flex justify-center md:justify-start mb-4 md:mb-0">
-            <div className="overflow-hidden rounded-2xl w-40 h-48 md:w-48 md:h-56 bg-neutral-700 relative">
-              <Image
-                src="/portrait-placeholder.jpg"
-                alt="Michael Trüssel Portrait"
-                fill
-                style={{ objectFit: 'cover' }}
-                sizes="(max-width: 768px) 160px, 192px"
-                priority
+        {/* Content: Video & Checklist */}
+        <div className="flex flex-col md:flex-row md:items-center md:gap-12">
+          {/* Left: Intro-Video */}
+          <div className="flex-shrink-0 flex justify-center md:justify-start mb-6 md:mb-0">
+            <div className="overflow-hidden rounded-2xl w-56 md:w-72 aspect-[9/16] bg-neutral-700 relative shadow-lg">
+              <video
+                src="/videos/intro-video.mp4"
+                className="w-full h-full object-cover rounded-2xl"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                poster="/images/Logo black_gold_transparent.png"
               />
             </div>
           </div>
