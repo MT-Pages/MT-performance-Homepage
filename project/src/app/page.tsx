@@ -29,8 +29,10 @@ export default function Home() {
         <Hero />
         <TestimonialSection />
         <WhySection />
-        <SolutionSection />
-        <ComparisonTableSection />
+        <div className="space-y-0">
+          <SolutionSection />
+          <ComparisonTableSection />
+        </div>
         <StepsSection />
         <AboutSection />
         <CtaSection />

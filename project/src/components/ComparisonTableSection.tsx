@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ComparisonTableSection() {
   return (
-    <section className="py-12">
+    <section className="pt-8 pb-12">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-white text-xl font-bold mb-6 text-center">Leistungsvergleich: Einzelne Anbieter vs. Festangestellte vs. Michael Trüssel Performance</h2>
         <div className="overflow-x-auto">

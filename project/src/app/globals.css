@@ -93,82 +93,156 @@ body {
 /* Scroll Animations für Steps Section */
 .steps-section {
   position: relative;
-  z-index: 1;
-  scroll-behavior: smooth;
+  height: 500vh; /* Tall enough for slow scrolling through steps */
+  overflow: hidden;
 }
 
 .steps-container {
   position: sticky;
   top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  overflow: hidden;
-}
-
-.step-card {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.step-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.spacer {
-  height: 150vh; /* Längerer Abstand zum Triggern der Animation */
-}
-
-.steps-heading-container {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  max-width: 500px;
-  text-align: left;
-  padding: 0 20px;
+  justify-content: center;
   z-index: 10;
+  background-color: rgba(10, 10, 10, 0.8); /* Ensure proper background without transparency */
+  backdrop-filter: blur(10px); /* Subtle backdrop effect */
+}
+
+/* Headings and content containers */
+.steps-heading-container {
+  text-align: left;
 }
 
 .steps-content-container {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  max-width: 600px;
-  padding: 0 20px;
+  position: relative;
 }
 
 @media (max-width: 1200px) {
-  .steps-heading-container, 
-  .steps-content-container {
-    position: relative;
-    top: auto;
-    transform: none;
-    left: auto;
-    right: auto;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-  
   .steps-heading-container {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     text-align: center;
   }
   
-  .spacer {
-    height: 100vh;
+  .steps-cards-container {
+    height: 360px; /* More space on mobile */
   }
+}
+
+/* Step Cards Styling */
+.steps-cards-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.step-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(60px); /* Start closer for smoother transition */
+  transition: transform 2.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 2s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.step-card.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  z-index: 10;
+}
+
+/* Show only one step at a time - hide previous ones */
+.step-card.prev-1,
+.step-card.prev-2,
+.step-card.prev-3 {
+  opacity: 0; /* Hide previous steps */
+  transform: translateY(-20px); /* Slight upward movement when hiding */
+  transition: opacity 1s ease-out, transform 1.5s ease-out;
+  z-index: 1;
+}
+
+.step-card.next-1,
+.step-card.next-2,
+.step-card.next-3 {
+  opacity: 0;
+  transform: translateY(60px);
+  z-index: 1;
+}
+
+.step-inner {
+  background-color: #151e1f; /* Dark background */
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Progress dots - made more visible */
+.steps-progress {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 20;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: all 1s ease;
+}
+
+.progress-dot.active {
+  background-color: white;
+  transform: scale(1.4);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+/* Icon-Styling for steps */
+.step-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #00A3FF; /* Blue like in the screenshot */
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+/* Time badge styling */
+.time-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: white;
+  font-size: 0.875rem;
+  margin-top: 1rem;
 }
 
 @media (max-width: 768px) {
   .spacer {
-    height: 80vh;
+    height: 20vh; /* Adjusted from 10vh */
   }
+}
+
+/* Custom class to bring sections closer */
+.space-y-0 > * + * {
+  margin-top: -2rem; /* Reduced from -4rem for better spacing */
 }
