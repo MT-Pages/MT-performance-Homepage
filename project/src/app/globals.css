@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../components/StepsSectionTransitions.css";
 
 :root {
   --background: #ffffff;
@@ -32,8 +33,14 @@ body {
 
 /* Custom animations */
 @keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(32px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .animate-fade-in-up {
   animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -73,8 +80,13 @@ body {
 }
 
 @keyframes bounce-arrow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
 }
 .animate-bounce-arrow {
   animation: bounce-arrow 1.2s infinite;
@@ -82,7 +94,12 @@ body {
 
 /* Glasmorphism Utility */
 .glasmorphism {
-  background: rgba(30, 41, 59, 0.35); /* dunkles, leicht transparentes Overlay */
+  background: rgba(
+    30,
+    41,
+    59,
+    0.35
+  ); /* dunkles, leicht transparentes Overlay */
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -107,7 +124,12 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 10;
-  background-color: rgba(10, 10, 10, 0.8); /* Ensure proper background without transparency */
+  background-color: rgba(
+    10,
+    10,
+    10,
+    0.8
+  ); /* Ensure proper background without transparency */
   backdrop-filter: blur(10px); /* Subtle backdrop effect */
 }
 
@@ -125,7 +147,7 @@ body {
     margin-bottom: 2rem;
     text-align: center;
   }
-  
+
   .steps-cards-container {
     height: 360px; /* More space on mobile */
   }
@@ -146,8 +168,8 @@ body {
   width: 100%;
   opacity: 0;
   transform: translateY(60px); /* Start closer for smoother transition */
-  transition: transform 2.5s cubic-bezier(0.16, 1, 0.3, 1), 
-              opacity 2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 2.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 2s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
   z-index: 1;
 }
@@ -220,7 +242,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #00A3FF; /* Blue like in the screenshot */
+  background-color: #d4af37; /* Gold wie gewünscht */
   color: white;
   margin-bottom: 1.5rem;
 }
