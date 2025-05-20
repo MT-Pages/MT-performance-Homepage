@@ -31,19 +31,12 @@ body {
 }
 
 /* Custom animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animation-delay-200 {
@@ -77,4 +70,105 @@ body {
 
 .border-gold {
   border-color: #d4af37;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+.animate-bounce-arrow {
+  animation: bounce-arrow 1.2s infinite;
+}
+
+/* Glasmorphism Utility */
+.glasmorphism {
+  background: rgba(30, 41, 59, 0.35); /* dunkles, leicht transparentes Overlay */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Scroll Animations für Steps Section */
+.steps-section {
+  position: relative;
+  z-index: 1;
+  scroll-behavior: smooth;
+}
+
+.steps-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.step-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.step-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.spacer {
+  height: 150vh; /* Längerer Abstand zum Triggern der Animation */
+}
+
+.steps-heading-container {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+  padding: 0 20px;
+  z-index: 10;
+}
+
+.steps-content-container {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  max-width: 600px;
+  padding: 0 20px;
+}
+
+@media (max-width: 1200px) {
+  .steps-heading-container, 
+  .steps-content-container {
+    position: relative;
+    top: auto;
+    transform: none;
+    left: auto;
+    right: auto;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .steps-heading-container {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .spacer {
+    height: 100vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .spacer {
+    height: 80vh;
+  }
 }
