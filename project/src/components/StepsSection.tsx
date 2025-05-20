@@ -59,7 +59,7 @@ export default function StepsSection() {
         >
           <path
             fillRule="evenodd"
-            d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 0 0-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 0 0-2.282.819l-.922 1.597a1.875 1.875 0 0 0 .432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 0 0 0 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 0 0-.432 2.385l.922 1.597a1.875 1.875 0 0 0 2.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 0 0 2.28-.819l.923-1.597a1.875 1.875 0 0 0-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 0 0 0-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 0 0-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 0 0-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 0 0-1.85-1.567h-1.843ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"
+            d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 0 0-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 0 0-2.282.819l-.922 1.597a1.875 1.875 0 0 0 .432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 0 0 0 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 0 0-.432 2.385l.922 1.597a1.875 1.875 0 0 0 2.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 0 0 2.28-.819l.923-1.597a1.875 1.875 0 0 0-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 0 0 0-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 0 0-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 0 0-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 0 0-1.85-1.567h-1.843ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"
             clipRule="evenodd"
           />
         </svg>
@@ -122,11 +122,11 @@ export default function StepsSection() {
         {/* Linke Seite */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 lg:px-16">
           <h2 className="text-white text-3xl md:text-5xl font-extrabold mb-6 tracking-tight drop-shadow-lg leading-tight">
-            In 4 Schritten zu mehr Reichweite, qualifizierten Leads & planbarem
-            Wachstum
+            🚀 In 4 Schritten zu mehr Reichweite, qualifizierten Leads &
+            planbarem Wachstum
           </h2>
           <p className="text-white/80 text-lg mb-8">
-            Dein Zeitaufwand nach dem Onboarding ist minimal
+            Mit professionellen Kurzvideos als Einstieg in die Content-Strategie
           </p>
           <button className="bg-white text-[#0f1819] font-bold rounded-full px-8 py-3 shadow-md hover:scale-105 hover:shadow-xl transition-all text-lg font-sans focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95">
             Erstgespräch buchen
@@ -146,7 +146,7 @@ export default function StepsSection() {
                 >
                   <div
                     ref={cardRefDesktop}
-                    className="card bg-[#181f20] bg-opacity-90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/10 relative min-h-[340px] flex flex-col justify-between"
+                    className="card bg-[#0f1819] bg-opacity-90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/10 relative min-h-[340px] flex flex-col justify-between"
                   >
                     <div className="step-icon mb-4 text-white bg-opacity-100">
                       {steps[activeStep].icon}
@@ -210,7 +210,7 @@ export default function StepsSection() {
               >
                 <div
                   ref={cardRefMobile}
-                  className="card bg-[#181f20] bg-opacity-90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/10 min-h-[340px] flex flex-col justify-between"
+                  className="card bg-[#0f1819] bg-opacity-90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/10 min-h-[340px] flex flex-col justify-between"
                 >
                   <div className="step-icon mb-4 text-white bg-opacity-100">
                     {steps[activeStep].icon}
