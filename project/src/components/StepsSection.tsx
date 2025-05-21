@@ -5,6 +5,7 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 import "./StepsSectionTransitions.css";
 
 export default function StepsSection() {
+  const [isMounted, setIsMounted] = useState(false);
   const steps = [
     {
       number: 1,
@@ -98,6 +99,12 @@ export default function StepsSection() {
   const cardRefMobile = useRef(null);
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
     const handleScroll = () => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
@@ -110,7 +117,22 @@ export default function StepsSection() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [steps.length]);
+  }, [steps.length, isMounted]);
+
+  if (!isMounted) {
+    return (
+      <section className="relative bg-[#101415] min-h-screen">
+        <div className="h-screen flex items-center justify-center">
+          <div className="text-white text-center">
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-6">
+              🚀 In 4 Schritten zu mehr Reichweite
+            </h2>
+            <p className="text-white/80 text-lg">Lade...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Plyr from "plyr-react";
-import "plyr-react/plyr.css";
+import Plyr from "./PlyrWrapper";
 
 export default function Hero() {
   return (
@@ -38,19 +37,16 @@ export default function Hero() {
                   ],
                 }}
                 options={{
-                  autoplay: true,
-                  muted: true,
-                  loop: { active: true },
+                  autoplay: false,
+                  muted: false,
                   controls: [
                     "play-large",
                     "play",
                     "progress",
                     "current-time",
-                    "mute",
-                    "volume",
-                    "settings",
                     "fullscreen",
                   ],
+                  volume: 0.5,
                 }}
                 style={{ borderRadius: "1.5rem" }}
               />
