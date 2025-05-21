@@ -1,0 +1,12 @@
+/node_modules
+/project/node_modules
+.DS_Store
+*.log
+*.pem
+.env*
+# VSCode
+.vscode/
+# Sonstige typische Build- und Systemdateien
+/build
+/dist
+/out 
