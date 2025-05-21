@@ -8,7 +8,7 @@ export default function SolutionSection() {
         <SectionTitle>
           Meine Lösung um Sichtbarkeit messbar zu machen
         </SectionTitle>
-        <div className="mt-8 text-xl font-bold text-white">FOLGT NOCH</div>
+        <div className="mt-8 text-xl font-bold text-white">FOLGT NOCH FOLGT NOCH FOLGT NOCH</div>
       </div>
     </section>
   );
