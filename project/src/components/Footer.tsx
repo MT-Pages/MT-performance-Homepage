@@ -17,7 +17,7 @@ export default function Footer() {
               alt="Michael Trüssel Performance"
               width={180}
               height={60}
-              className="h-auto object-contain"
+              className="h-auto w-auto object-contain"
               priority
             />
           </Link>

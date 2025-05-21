@@ -4,7 +4,7 @@ import Plyr from "./PlyrWrapper";
 
 export default function TestimonialSection() {
   return (
-    <section className="py-12">
+    <section id="testimonials" className="py-12">
       <div className="max-w-2xl mx-auto text-center">
         <SectionTitle>Erfahrung meiner Kunden</SectionTitle>
         <div className="flex flex-col items-center">
