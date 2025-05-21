@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {process.env.NODE_ENV === "production" && (
+          <Script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="faf8f3ff-27fa-4fe3-b3df-862e96d839ae"
+            data-blockingmode="auto"
+            strategy="beforeInteractive"
+          />
+        )}
         {children}
       </body>
     </html>

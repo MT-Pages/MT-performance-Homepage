@@ -2,29 +2,55 @@
 
 import Link from "next/link";
 import Plyr from "./PlyrWrapper";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
     <section className="pt-20 md:pt-28 pb-8 md:pb-12">
       <div className="max-w-4xl mx-auto px-4">
         {/* Headline & Subheadline */}
-        <div className="text-center mb-6">
-          <p className="text-white text-sm md:text-base mb-1">
+        <motion.div
+          className="text-center mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <motion.p
+            className="text-white text-sm md:text-base mb-1"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             Für ambitionierte KMU mit 10–100 Mitarbeitenden
-          </p>
-          <h1 className="text-white font-bold text-lg md:text-2xl lg:text-3xl leading-snug mb-1">
+          </motion.p>
+          <motion.h1
+            className="text-white font-bold text-lg md:text-2xl lg:text-3xl leading-snug mb-1"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             Die 5 strategischen Bereiche, die dir aktuell fehlen, um hochwertige
             Kunden- & Mitarbeiteranfragen zu gewinnen…
-          </h1>
-          <p className="text-white text-xs md:text-sm">
+          </motion.h1>
+          <motion.p
+            className="text-white text-xs md:text-sm"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
             …und dein Unternehmen in 12 Monaten zum regionalen Marktführer zu
             machen.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
         {/* Content: Video & Checklist */}
         <div className="flex flex-col md:flex-row md:items-center md:gap-12">
           {/* Left: Intro-Video */}
-          <div className="flex-shrink-0 flex justify-center md:justify-start mb-6 md:mb-0">
+          <motion.div
+            className="flex-shrink-0 flex justify-center md:justify-start mb-6 md:mb-0"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.8, ease: "easeOut" }}
+          >
             <div className="overflow-hidden rounded-2xl w-56 md:w-72 aspect-[9/16] bg-neutral-700 relative shadow-lg group">
               <Plyr
                 source={{
@@ -51,9 +77,14 @@ export default function Hero() {
                 style={{ borderRadius: "1.5rem" }}
               />
             </div>
-          </div>
+          </motion.div>
           {/* Right: Checklist */}
-          <div className="flex-1 flex flex-col justify-center">
+          <motion.div
+            className="flex-1 flex flex-col justify-center"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 1, ease: "easeOut" }}
+          >
             <ul className="space-y-3 mb-6">
               <ChecklistItem>
                 Verstehe, wie du durch gezielte Sichtbarkeit eine starke Marke
@@ -72,15 +103,20 @@ export default function Hero() {
                 Gespräche mit Interessenten zu führen, die bereit sind zu kaufen
               </ChecklistItem>
             </ul>
-            <div className="w-full flex justify-center md:justify-start">
+            <motion.div
+              className="w-full flex justify-center md:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.2 }}
+            >
               <Link
                 href="/kontakt#termin"
-                className="inline-block w-full md:w-auto px-8 py-3 rounded-full font-bold text-[#0f1819] text-base bg-[#d4af37] shadow-md hover:opacity-90 transition-all text-center"
+                className="inline-block w-full md:w-auto px-8 py-3 rounded-full font-bold text-[#0f1819] text-base bg-[#d4af37] shadow-md hover:scale-105 hover:shadow-xl transition-all text-center focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95"
               >
                 Jetzt Erstgespräch buchen
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -89,7 +125,12 @@ export default function Hero() {
 
 function ChecklistItem({ children }: { children: React.ReactNode }) {
   return (
-    <li className="flex items-center gap-3 text-white text-sm md:text-base min-h-[44px]">
+    <motion.li
+      className="flex items-center gap-3 text-white text-sm md:text-base min-h-[44px]"
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <span className="flex flex-col justify-center h-full">
         <svg
           width="20"
@@ -111,6 +152,6 @@ function ChecklistItem({ children }: { children: React.ReactNode }) {
       <span className="leading-snug font-medium text-white/90 max-w-xs md:max-w-md">
         {children}
       </span>
-    </li>
+    </motion.li>
   );
 }

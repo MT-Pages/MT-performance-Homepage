@@ -24,10 +24,7 @@ export default function DatenschutzPage() {
   return (
     <>
       <Header />
-      <main className="min-h-[60vh] bg-black pt-28 pb-28 px-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-white text-left mb-8 mt-4 max-w-4xl mx-auto">
-          Datenschutz
-        </h1>
+      <main className="min-h-[60vh] bg-[#101415] pt-12 pb-28 px-4">
         <div className="max-w-4xl mx-auto">
           <Script
             src="https://app.privacybee.io/widget.js"

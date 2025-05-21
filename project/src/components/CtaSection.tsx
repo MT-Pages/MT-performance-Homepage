@@ -16,7 +16,7 @@ export default function CtaSection() {
           Marketing gezielt einsetzen kannst, um mehr Sichtbarkeit, Vertrauen
           und Anfragen zu gewinnen.
         </p>
-        <button className="bg-[#0f1819] text-white font-bold rounded-full px-8 py-3 shadow-md hover:opacity-90 transition-all">
+        <button className="bg-[#0f1819] text-white font-bold rounded-full px-8 py-3 shadow-md hover:scale-105 hover:shadow-xl transition-all text-lg font-sans focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95">
           Erstgespräch buchen
         </button>
       </div>
