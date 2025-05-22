@@ -12,7 +12,8 @@ export default function Header() {
     const section = document.getElementById("about");
     if (section) {
       const yOffset = -90; // Passe diesen Wert ggf. an die Höhe deines Headers an
-      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const y =
+        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
       setIsMenuOpen(false);
     }
@@ -22,7 +23,8 @@ export default function Header() {
     const section = document.getElementById("testimonials");
     if (section) {
       const yOffset = -90;
-      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const y =
+        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
       setIsMenuOpen(false);
     }
@@ -37,9 +39,9 @@ export default function Header() {
             <Image
               src="/images/logo_white_gold_transparent.png"
               alt="Michael Trüssel Performance"
-              width={100}
-              height={28}
-              className="h-auto w-auto object-contain"
+              width={120}
+              height={36}
+              className="max-h-12 w-auto object-contain"
               priority
             />
           </Link>

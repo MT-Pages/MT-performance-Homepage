@@ -15,9 +15,9 @@ export default function Footer() {
             <Image
               src="/images/logo_white_gold_transparent.png"
               alt="Michael Trüssel Performance"
-              width={180}
-              height={60}
-              className="h-auto w-auto object-contain"
+              width={168}
+              height={50}
+              className="max-h-14 w-auto object-contain mx-auto"
               priority
             />
           </Link>
