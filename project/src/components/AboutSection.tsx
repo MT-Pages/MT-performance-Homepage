@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function AboutSection() {
   return (
-    <section className="pt-20 pb-12">
+    <section id="about" className="pt-20 pb-12">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-start gap-8">
         <div className="flex flex-col items-center flex-shrink-0">
           <div className="w-48 h-56 bg-neutral-700 rounded-2xl mb-2 overflow-hidden relative shadow-lg">

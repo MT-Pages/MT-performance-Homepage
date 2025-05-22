@@ -7,6 +7,27 @@ import { useState } from "react";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Smooth scroll handler
+  const handleScrollToAbout = () => {
+    const section = document.getElementById("about");
+    if (section) {
+      const yOffset = -90; // Passe diesen Wert ggf. an die Höhe deines Headers an
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+      setIsMenuOpen(false);
+    }
+  };
+
+  const handleScrollToTestimonials = () => {
+    const section = document.getElementById("testimonials");
+    if (section) {
+      const yOffset = -90;
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <header className="fixed w-full bg-[#0f1819] z-50">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-1 flex items-center min-h-[48px] relative">
@@ -18,7 +39,8 @@ export default function Header() {
               alt="Michael Trüssel Performance"
               width={100}
               height={28}
-              className="h-auto object-contain"
+              className="h-auto w-auto object-contain"
+              priority
             />
           </Link>
         </div>
@@ -26,18 +48,20 @@ export default function Header() {
         {/* Desktop Navigation - Center absolut mittig */}
         <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <nav className="flex items-center gap-8">
-            <Link
-              href="/ueber-mich"
-              className="text-white hover:text-gray-300 font-medium transition-colors text-base"
+            <button
+              type="button"
+              onClick={handleScrollToAbout}
+              className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
             >
               Über mich
-            </Link>
-            <Link
-              href="/kundenstimmen"
-              className="text-white hover:text-gray-300 font-medium transition-colors text-base"
+            </button>
+            <button
+              type="button"
+              onClick={handleScrollToTestimonials}
+              className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
             >
               Kundenstimmen
-            </Link>
+            </button>
             <Link
               href="/so-arbeiten-wir"
               className="text-white hover:text-gray-300 font-medium transition-colors text-base"
@@ -90,20 +114,20 @@ export default function Header() {
       {isMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 right-0 bg-[#0f1819] shadow-lg py-8 px-4 transition-all duration-300 ease-in-out">
           <nav className="flex flex-col space-y-6">
-            <Link
-              href="/ueber-mich"
-              className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium"
-              onClick={() => setIsMenuOpen(false)}
+            <button
+              type="button"
+              onClick={handleScrollToAbout}
+              className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
             >
               Über mich
-            </Link>
-            <Link
-              href="/kundenstimmen"
-              className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium"
-              onClick={() => setIsMenuOpen(false)}
+            </button>
+            <button
+              type="button"
+              onClick={handleScrollToTestimonials}
+              className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
             >
               Kundenstimmen
-            </Link>
+            </button>
             <Link
               href="/so-arbeiten-wir"
               className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium"
