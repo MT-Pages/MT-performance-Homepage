@@ -29,11 +29,9 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy auf Netlify
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Nutze das native Next.js Deployment. Build Command: 'npm run build', Publish Directory: '.next', Base Directory: 'project'.
 
 ## Deployment auf Netlify (statisch)
 
@@ -42,5 +40,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 2. Baue und exportiere das Projekt:
    npm run build && npm run export
 3. Setze den Ordner "out" als Publish directory in Netlify.
-4. Lege im "out"-Ordner eine Datei namens _redirects mit folgendem Inhalt an:
-   /*    /index.html   200
+4. Lege im "out"-Ordner eine Datei namens \_redirects mit folgendem Inhalt an:
+   /\* /index.html 200
