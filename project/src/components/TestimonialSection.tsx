@@ -8,7 +8,7 @@ export default function TestimonialSection() {
       <div className="max-w-2xl mx-auto text-center">
         <SectionTitle>Erfahrung meiner Kunden</SectionTitle>
         <div className="flex flex-col items-center">
-          <div className="w-full max-w-[160px] md:max-w-[220px] aspect-[9/16] bg-neutral-700 rounded-2xl mb-4 overflow-hidden shadow-lg">
+          <div className="overflow-hidden rounded-2xl w-52 min-w-[180px] md:w-64 lg:w-80 aspect-[9/16] bg-neutral-700 relative shadow-lg group mb-4">
             <Plyr
               source={{
                 type: "video",

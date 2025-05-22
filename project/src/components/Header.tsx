@@ -113,40 +113,50 @@ export default function Header() {
       </div>
 
       {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-[#0f1819] shadow-lg py-8 px-4 transition-all duration-300 ease-in-out">
-          <nav className="flex flex-col space-y-6">
-            <button
-              type="button"
-              onClick={handleScrollToAbout}
-              className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
-            >
-              Über mich
-            </button>
-            <button
-              type="button"
-              onClick={handleScrollToTestimonials}
-              className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
-            >
-              Kundenstimmen
-            </button>
-            <Link
-              href="/so-arbeiten-wir"
-              className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              So arbeiten wir
-            </Link>
-            <Link
-              href="/kontakt#termin"
-              className="text-white border border-white px-5 py-2 w-full text-center mt-4 block font-medium transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Erstgespräch buchen
-            </Link>
-          </nav>
-        </div>
-      )}
+      <div
+        className={`lg:hidden absolute top-full left-0 right-0 bg-[#0f1819] shadow-lg px-4 transition-all duration-500 ease-in-out overflow-hidden z-40
+          ${
+            isMenuOpen
+              ? "py-8 max-h-[500px] opacity-100"
+              : "py-0 max-h-0 opacity-0 pointer-events-none"
+          }`}
+        style={{
+          // Optional: für noch weichere Animationen
+          transitionProperty: "max-height, opacity, padding",
+        }}
+        aria-hidden={!isMenuOpen}
+      >
+        <nav className="flex flex-col space-y-6">
+          <button
+            type="button"
+            onClick={handleScrollToAbout}
+            className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
+          >
+            Über mich
+          </button>
+          <button
+            type="button"
+            onClick={handleScrollToTestimonials}
+            className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
+          >
+            Kundenstimmen
+          </button>
+          <Link
+            href="/so-arbeiten-wir"
+            className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            So arbeiten wir
+          </Link>
+          <Link
+            href="/kontakt#termin"
+            className="font-bold transition-colors text-black bg-white px-5 py-2 rounded-full text-base shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-20 whitespace-nowrap text-center mt-4 block"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Erstgespräch buchen
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }

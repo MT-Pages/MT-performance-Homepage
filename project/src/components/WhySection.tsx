@@ -4,7 +4,7 @@ import SectionTitle from "./SectionTitle";
 export default function WhySection() {
   return (
     <section className="py-12">
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="max-w-3xl mx-auto text-center px-4">
         <SectionTitle>
           Warum „Online sein“ heute nicht mehr reicht – und Sichtbarkeit ohne
           System dein Wachstum ausbremst
