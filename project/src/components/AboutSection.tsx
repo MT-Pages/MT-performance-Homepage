@@ -9,7 +9,7 @@ export default function AboutSection() {
         <div className="flex flex-col items-center flex-shrink-0">
           <div className="w-48 h-56 bg-neutral-700 rounded-2xl mb-2 overflow-hidden relative shadow-lg">
             <Image
-              src="/images/Michael-Truessel-Portrait.png"
+              src="/images/michael_truessel_portrait.png"
               alt="Michael Trüssel Portrait"
               fill
               style={{ objectFit: "cover" }}

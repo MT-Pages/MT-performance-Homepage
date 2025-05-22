@@ -14,7 +14,7 @@ export default function Header() {
         <div className="flex-shrink-0 z-10">
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/Logo white_gold_transparent.png"
+              src="/images/logo_white_gold_transparent.png"
               alt="Michael Trüssel Performance"
               width={100}
               height={28}

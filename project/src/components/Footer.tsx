@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-center py-6 border-b border-gray-800 gap-6 md:gap-12">
           <Link href="/">
             <Image
-              src="/images/Logo white_gold_transparent.png"
+              src="/images/logo_white_gold_transparent.png"
               alt="Michael Trüssel Performance"
               width={180}
               height={60}

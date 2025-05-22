@@ -2,12 +2,13 @@
 
 import dynamic from "next/dynamic";
 import "plyr-react/plyr.css";
+import type { PlyrProps } from "plyr-react";
 
 const Plyr = dynamic(() => import("plyr-react"), {
   ssr: false,
 });
 
-const PlyrWrapper = (props: any) => {
+const PlyrWrapper = (props: PlyrProps) => {
   return <Plyr {...props} />;
 };
 
