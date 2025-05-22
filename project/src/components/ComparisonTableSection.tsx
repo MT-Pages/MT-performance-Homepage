@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import SectionTitle from "./SectionTitle";
 
 export default function ComparisonTableSection() {
@@ -43,6 +43,24 @@ export default function ComparisonTableSection() {
   // Chevron-Visibility-Logik
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showChevron, setShowChevron] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Progressbar auch bei Resize aktualisieren
+  useEffect(() => {
+    const handleResize = () => {
+      if (!scrollRef.current) return;
+      const { scrollLeft, clientWidth, scrollWidth } = scrollRef.current;
+      if (scrollWidth <= clientWidth) {
+        setScrollProgress(1);
+      } else {
+        setScrollProgress(scrollLeft / (scrollWidth - clientWidth));
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    // Initial berechnen
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <section className="pt-20 pb-20">
@@ -63,7 +81,7 @@ export default function ComparisonTableSection() {
             }`}
           >
             <span
-              className="inline-block animate-arrow-bounce-left text-lg text-white/50"
+              className="inline-block animate-arrow-bounce-left text-lg text-white/50 mr-2"
               aria-hidden="true"
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -76,10 +94,13 @@ export default function ComparisonTableSection() {
                 />
               </svg>
             </span>
+            <span className="text-sm text-white/60 font-medium select-none">
+              Wische um mehr zu sehen
+            </span>
           </span>
           <div className="relative">
             <div
-              className="overflow-x-auto w-full"
+              className="overflow-x-auto w-full px-4 md:px-0 hide-native-scrollbar"
               ref={scrollRef}
               onScroll={() => {
                 if (!scrollRef.current) return;
@@ -88,6 +109,12 @@ export default function ComparisonTableSection() {
                 setShowChevron(
                   scrollLeft + clientWidth >= scrollWidth - 2 ? false : true
                 );
+                // Progressbar-Logik
+                if (scrollWidth <= clientWidth) {
+                  setScrollProgress(1);
+                } else {
+                  setScrollProgress(scrollLeft / (scrollWidth - clientWidth));
+                }
               }}
             >
               <div className="bg-black/30 rounded-2xl shadow-xl overflow-hidden min-w-fit">
@@ -193,6 +220,28 @@ export default function ComparisonTableSection() {
                 </table>
               </div>
               <div className="mb-12" />
+              {/* Mobile: Eigene Scrollbar unter der Tabelle, immer zentriert und fixiert */}
+              <div
+                className="md:hidden w-full flex justify-center pointer-events-none px-4"
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  zIndex: 10,
+                }}
+              >
+                <div className="w-full max-w-[500px] h-2 bg-white/10 rounded-full overflow-hidden relative">
+                  <div
+                    className="h-full bg-[#d4af37] rounded-full transition-all duration-300"
+                    style={{
+                      width: `${
+                        Math.max(0, Math.min(1, scrollProgress)) * 100
+                      }%`,
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

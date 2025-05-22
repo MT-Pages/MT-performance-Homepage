@@ -291,21 +291,6 @@ body {
     right: 0;
     background: linear-gradient(to left, #0f1819 80%, transparent);
   }
-  /* Schmale, moderne Scrollbar */
-  .scrollbar-thin {
-    scrollbar-width: thin;
-    scrollbar-color: #d4af37 #0f1819;
-  }
-  .scrollbar-thin::-webkit-scrollbar {
-    height: 6px;
-  }
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: #d4af37;
-    border-radius: 8px;
-  }
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: transparent;
-  }
 }
 
 /* Custom class to bring sections closer */
@@ -331,4 +316,24 @@ body {
 .animate-arrow-bounce-left {
   animation: arrow-bounce-left 2.4s infinite cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
+}
+
+/* Benutzerdefinierte Textauswahlfarbe */
+::selection {
+  background: #d4af37;
+  color: #171717; /* Für guten Kontrast, passend zu foreground */
+}
+
+::-moz-selection {
+  background: #d4af37;
+  color: #171717;
+}
+
+/* Blendet die native horizontale Scrollbar aus, aber erlaubt weiterhin das Scrollen */
+.hide-native-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.hide-native-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari und Chrome */
 }

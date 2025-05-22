@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Michael Trüssel Performance",
-  description: "Performance und Persönlichkeitsentwicklung - Michael Trüssel",
+  description: "Michael Trüssel Performance",
 };
 
 export default function RootLayout({
