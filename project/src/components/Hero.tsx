@@ -87,7 +87,7 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 1, ease: 'easeOut' }}
           >
-            <ul className="space-y-3 mb-6 w-full text-left">
+            <ul className="space-y-6 mb-8 w-full text-left">
               <ChecklistItem>
                 Verstehe, wie du durch gezielte Sichtbarkeit eine starke Marke
                 aufbaust, die Vertrauen schafft
@@ -113,7 +113,7 @@ export default function Hero() {
             >
               <Link
                 href="/kontakt"
-                className="inline-block w-full px-0 py-3 rounded-full font-bold text-[#0f1819] text-base bg-[#d4af37] shadow-md hover:scale-105 hover:shadow-xl transition-all text-center focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95"
+                className="inline-block w-full px-0 py-4 rounded-full font-bold text-[#0f1819] text-lg bg-[#d4af37] shadow-md hover:scale-105 hover:shadow-xl transition-all text-center focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95"
                 style={{ maxWidth: '100%' }}
               >
                 Jetzt Erstgespräch buchen
@@ -144,30 +144,30 @@ export default function Hero() {
 function ChecklistItem({ children }: { children: React.ReactNode }) {
   return (
     <motion.li
-      className="flex items-center gap-3 text-white text-sm md:text-base min-h-[44px]"
+      className="flex items-start gap-4 text-white text-base md:text-lg min-h-[64px] py-2"
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <span className="flex flex-col justify-center h-full">
+      <span className="flex flex-col justify-start pt-1">
         <svg
-          width="20"
-          height="20"
+          width="28"
+          height="28"
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="inline align-middle"
+          className="flex-shrink-0"
         >
           <path
             d="M5 10.5L9 14.5L15 7.5"
             stroke="#d4af37"
-            strokeWidth="2.2"
+            strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         </svg>
       </span>
-      <span className="leading-snug font-medium text-white/90 max-w-xs md:max-w-md">
+      <span className="leading-relaxed font-medium text-white/90 flex-1">
         {children}
       </span>
     </motion.li>
