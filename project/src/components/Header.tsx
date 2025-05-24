@@ -30,6 +30,17 @@ export default function Header() {
     }
   };
 
+  const handleScrollToSteps = () => {
+    const section = document.getElementById("steps");
+    if (section) {
+      const yOffset = -90;
+      const y =
+        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <header className="fixed w-full bg-[#0f1819] z-50">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-1 flex items-center min-h-[48px] relative">
@@ -64,19 +75,20 @@ export default function Header() {
             >
               Kundenstimmen
             </button>
-            <Link
-              href="/so-arbeiten-wir"
-              className="text-white hover:text-gray-300 font-medium transition-colors text-base"
+            <button
+              type="button"
+              onClick={handleScrollToSteps}
+              className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
             >
               So arbeiten wir
-            </Link>
+            </button>
           </nav>
         </div>
 
         {/* Button - Right */}
         <div className="hidden lg:block flex-shrink-0 ml-auto z-10">
           <Link
-            href="/kontakt#termin"
+            href="/kontakt"
             className="font-bold transition-colors text-black bg-white px-5 py-2 rounded-full text-base shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-20 whitespace-nowrap text-center"
           >
             Erstgespräch buchen
@@ -141,15 +153,15 @@ export default function Header() {
           >
             Kundenstimmen
           </button>
-          <Link
-            href="/so-arbeiten-wir"
-            className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium"
-            onClick={() => setIsMenuOpen(false)}
+          <button
+            type="button"
+            onClick={handleScrollToSteps}
+            className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
           >
             So arbeiten wir
-          </Link>
+          </button>
           <Link
-            href="/kontakt#termin"
+            href="/kontakt"
             className="font-bold transition-colors text-black bg-white px-5 py-2 rounded-full text-base shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-20 whitespace-nowrap text-center mt-4 block"
             onClick={() => setIsMenuOpen(false)}
           >

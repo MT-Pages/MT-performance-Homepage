@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
+import Link from "next/link";
 import "./StepsSectionTransitions.css";
 
 export default function StepsSection() {
@@ -136,6 +137,7 @@ export default function StepsSection() {
 
   return (
     <section
+      id="steps"
       ref={sectionRef}
       style={{ height: `calc(100vh * ${steps.length})` }}
       className="relative bg-[#101415]"
@@ -150,9 +152,14 @@ export default function StepsSection() {
           <p className="text-white/80 text-lg mb-8">
             Mit professionellen Kurzvideos als Einstieg in die Content-Strategie
           </p>
-          <button className="bg-white text-[#0f1819] font-bold rounded-full px-8 py-3 shadow-md hover:scale-105 hover:shadow-xl transition-all text-lg font-sans focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95">
-            Erstgespräch buchen
-          </button>
+          <div className="flex justify-center">
+            <Link
+              href="/kontakt"
+              className="bg-white text-[#0f1819] font-bold rounded-full px-6 py-2.5 shadow-md hover:scale-105 hover:shadow-xl transition-all text-base font-sans focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95"
+            >
+              Erstgespräch buchen
+            </Link>
+          </div>
         </div>
         {/* Rechte Seite */}
         <div className="hidden lg:flex w-1/2 items-center justify-center">

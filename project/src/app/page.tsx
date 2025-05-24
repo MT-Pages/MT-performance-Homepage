@@ -17,9 +17,6 @@ const ComparisonTableSection = dynamic(
 const StepsSection = dynamic(() => import("@/components/StepsSection"));
 const AboutSection = dynamic(() => import("@/components/AboutSection"));
 const CtaSection = dynamic(() => import("@/components/CtaSection"));
-const ContactFormSection = dynamic(
-  () => import("@/components/ContactFormSection")
-);
 
 export default function Home() {
   return (
@@ -36,7 +33,6 @@ export default function Home() {
         <StepsSection />
         <AboutSection />
         <CtaSection />
-        <ContactFormSection />
       </main>
       <Footer />
     </div>

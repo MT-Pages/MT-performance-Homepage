@@ -112,7 +112,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 1.2 }}
             >
               <Link
-                href="/kontakt#termin"
+                href="/kontakt"
                 className="inline-block w-full px-0 py-3 rounded-full font-bold text-[#0f1819] text-base bg-[#d4af37] shadow-md hover:scale-105 hover:shadow-xl transition-all text-center focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95"
                 style={{ maxWidth: '100%' }}
               >

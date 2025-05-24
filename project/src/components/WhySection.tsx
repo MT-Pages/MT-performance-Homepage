@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import SectionTitle from "./SectionTitle";
 
 export default function WhySection() {
@@ -6,7 +7,7 @@ export default function WhySection() {
     <section className="py-12">
       <div className="max-w-3xl mx-auto text-center px-4">
         <SectionTitle>
-          Warum „Online sein“ heute nicht mehr reicht – und Sichtbarkeit ohne
+          Warum „Online sein" heute nicht mehr reicht – und Sichtbarkeit ohne
           System dein Wachstum ausbremst
         </SectionTitle>
         <p className="text-white mb-2">
@@ -27,9 +28,12 @@ export default function WhySection() {
           Auftritt und einem durchdachten System zur Kundengewinnung setzen sich
           langfristig durch.
         </p>
-        <button className="bg-white text-[#0f1819] font-bold rounded-full px-8 py-3 shadow-md hover:scale-105 hover:shadow-xl transition-all text-lg font-sans focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95">
+        <Link
+          href="/kontakt"
+          className="bg-white text-[#0f1819] font-bold rounded-full px-8 py-3 shadow-md hover:scale-105 hover:shadow-xl transition-all text-lg font-sans focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95 inline-block"
+        >
           Erstgespräch buchen
-        </button>
+        </Link>
       </div>
     </section>
   );
