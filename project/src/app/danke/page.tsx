@@ -5,19 +5,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
-// Facebook Pixel type declaration
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare global {
-  interface Window {
-    fbq?: (action: string, event: string, parameters?: Record<string, any>) => void;
-  }
-}
-
 export default function DankePage() {
   useEffect(() => {
     // Meta Pixel Event für Conversion Tracking (falls noch nicht gefeuert)
     if (typeof window !== "undefined") {
-      const fbq = window.fbq;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const fbq = (window as any).fbq;
       if (fbq) {
         fbq("track", "CompleteRegistration", {
           content_name: "Erstgespräch Bestätigung",
