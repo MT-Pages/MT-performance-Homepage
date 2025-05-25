@@ -51,11 +51,11 @@ export default function KontaktPage() {
           </div>
 
           {/* Calendly Widget */}
-          <div className="bg-[#0f1819] bg-opacity-90 backdrop-blur-lg p-4 md:p-8 rounded-3xl shadow-xl border border-white/10 mb-12">
+          <div className="mb-12">
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/michaelbusinessch/erstgespraech?primary_color=d4af37&embed_domain=localhost&embed_type=Inline"
-              style={{ minWidth: "320px", height: "1200px" }}
+              style={{ minWidth: "320px", height: "700px" }}
             ></div>
           </div>
 
@@ -91,6 +91,12 @@ export default function KontaktPage() {
       <style jsx global>{`
         .calendly-inline-widget iframe {
           overflow: hidden !important;
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
+        }
+        
+        .calendly-inline-widget iframe::-webkit-scrollbar {
+          display: none !important;
         }
         
         .calendly-popup-content {
@@ -100,10 +106,28 @@ export default function KontaktPage() {
         /* Versteckt Scrollbars im Widget */
         .calendly-inline-widget {
           overflow: hidden !important;
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
+        }
+        
+        .calendly-inline-widget::-webkit-scrollbar {
+          display: none !important;
         }
         
         .calendly-inline-widget iframe body {
           overflow: visible !important;
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
+        }
+        
+        /* Alle möglichen Scrollbar-Selektoren */
+        .calendly-inline-widget * {
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
+        }
+        
+        .calendly-inline-widget *::-webkit-scrollbar {
+          display: none !important;
         }
       `}</style>
     </div>
