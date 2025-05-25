@@ -5,16 +5,27 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
+// Facebook Pixel type declaration
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare global {
+  interface Window {
+    fbq?: (action: string, event: string, parameters?: Record<string, any>) => void;
+  }
+}
+
 export default function DankePage() {
   useEffect(() => {
     // Meta Pixel Event für Conversion Tracking (falls noch nicht gefeuert)
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "CompleteRegistration", {
-        content_name: "Erstgespräch Bestätigung",
-        content_category: "Thank You Page",
-        value: 1,
-        currency: "EUR",
-      });
+    if (typeof window !== "undefined") {
+      const fbq = window.fbq;
+      if (fbq) {
+        fbq("track", "CompleteRegistration", {
+          content_name: "Erstgespräch Bestätigung",
+          content_category: "Thank You Page",
+          value: 1,
+          currency: "EUR",
+        });
+      }
     }
   }, []);
 
@@ -97,8 +108,8 @@ export default function DankePage() {
           {/* Social Proof */}
           <div className="bg-gradient-to-r from-[#d4af37]/10 to-[#d4af37]/5 p-6 rounded-2xl border border-[#d4af37]/20 mb-12">
             <p className="text-white/90 text-lg font-medium mb-4">
-              "Durch die Zusammenarbeit mit MT Performance haben wir unsere Lead-Generierung 
-              um 300% gesteigert und endlich planbare Kundenanfragen."
+              &quot;Durch die Zusammenarbeit mit MT Performance haben wir unsere Lead-Generierung 
+              um 300% gesteigert und endlich planbare Kundenanfragen.&quot;
             </p>
             <div className="flex items-center justify-center space-x-2">
               <div className="flex text-[#d4af37]">
