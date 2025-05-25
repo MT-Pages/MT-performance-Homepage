@@ -87,7 +87,7 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 1, ease: 'easeOut' }}
           >
-            <ul className="space-y-6 mb-8 w-full text-left">
+            <ul className="space-y-6 mb-8 w-full text-left custom-checklist-spacing">
               <ChecklistItem>
                 Verstehe, wie du durch gezielte Sichtbarkeit eine starke Marke
                 aufbaust, die Vertrauen schafft
@@ -134,6 +134,15 @@ export default function Hero() {
             padding-bottom: 2rem !important;
             padding-left: 0 !important;
             padding-right: 0 !important;
+          }
+          .custom-checklist-spacing > li {
+            margin-bottom: 0 !important;
+          }
+          .custom-checklist-spacing {
+            gap: 0 !important;
+            row-gap: 0 !important;
+            --tw-space-y-reverse: 0 !important;
+            --tw-space-y: 0 !important;
           }
         }
       `}</style>

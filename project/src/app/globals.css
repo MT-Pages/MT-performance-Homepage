@@ -337,3 +337,13 @@ body {
 .hide-native-scrollbar::-webkit-scrollbar {
   display: none; /* Safari und Chrome */
 }
+
+/* Zeige spezielle mobile-landscape-Klasse nur auf kleinen Screens im Landscape-Modus */
+@media (max-width: 1023px) and (orientation: landscape) {
+  .mobile-landscape\:flex {
+    display: flex !important;
+  }
+  .mobile-landscape\:hidden {
+    display: none !important;
+  }
+}

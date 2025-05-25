@@ -69,7 +69,7 @@ export default function ComparisonTableSection() {
           <span className="block text-3xl md:text-4xl font-extrabold text-center">
             🧩 Leistungsvergleich:
           </span>
-          <span className="block text-lg md:text-xl font-semibold text-white/80 text-center">
+          <span className="block text-lg md:text-xl font-semibold text-white/80 text-center px-4 md:px-0">
             Einzelne Anbieter vs. Festangestellte vs. Michael Trüssel
             Performance
           </span>

@@ -85,7 +85,7 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Button - Right */}
+        {/* Button - Right (Desktop) */}
         <div className="hidden lg:block flex-shrink-0 ml-auto z-10">
           <Link
             href="/kontakt"
@@ -95,33 +95,47 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Mobile menu button */}
-        <button
-          className="lg:hidden ml-auto flex items-center"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={`transition-transform duration-300 ${
-              isMenuOpen ? "rotate-90" : ""
-            }`}
+        {/* Mobile Landscape Button und Burger-Menü */}
+        <div className="flex lg:hidden items-center ml-auto z-10">
+          {/* Button - Mobile Landscape */}
+          <div className="hidden mobile-landscape:flex flex-shrink-0 mr-2">
+            <Link
+              href="/kontakt"
+              className="font-bold transition-colors text-black bg-white px-4 py-2 rounded-full text-base shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-20 whitespace-nowrap text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Erstgespräch buchen
+            </Link>
+          </div>
+          {/* Mobile menu button */}
+          <button
+            className="flex items-center"
+            style={{ zIndex: 11 }}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {isMenuOpen ? (
-              <path d="M18 6L6 18M6 6l12 12" />
-            ) : (
-              <path d="M3 12h18M3 6h18M3 18h18" />
-            )}
-          </svg>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className={`transition-transform duration-300 ${
+                isMenuOpen ? "rotate-90" : ""
+              }`}
+            >
+              {isMenuOpen ? (
+                <path d="M18 6L6 18M6 6l12 12" />
+              ) : (
+                <path d="M3 12h18M3 6h18M3 18h18" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}
@@ -162,7 +176,7 @@ export default function Header() {
           </button>
           <Link
             href="/kontakt"
-            className="font-bold transition-colors text-black bg-white px-5 py-2 rounded-full text-base shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-20 whitespace-nowrap text-center mt-4 block"
+            className="font-bold transition-colors text-black bg-white px-5 py-2 rounded-full text-base shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-20 whitespace-nowrap text-center mt-4 block mobile-landscape:hidden"
             onClick={() => setIsMenuOpen(false)}
           >
             Erstgespräch buchen

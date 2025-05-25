@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import Link from "next/link";
 import "./StepsSectionTransitions.css";
+import SwipeableViews from 'react-swipeable-views';
 
 export default function StepsSection() {
   const [isMounted, setIsMounted] = useState(false);
@@ -99,12 +100,15 @@ export default function StepsSection() {
   const cardRefDesktop = useRef(null);
   const cardRefMobile = useRef(null);
 
+  // Hilfsfunktion für Breakpoint
+  const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    if (!isMounted) return;
+    if (!isMounted || !isDesktop) return;
 
     const handleScroll = () => {
       if (!sectionRef.current) return;
@@ -118,7 +122,15 @@ export default function StepsSection() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [steps.length, isMounted]);
+  }, [steps.length, isMounted, isDesktop]);
+
+  // Section-Height: Desktop = calc(100vh * steps.length), Mobile = h-screen
+  const sectionStyle = typeof window !== 'undefined' && window.innerWidth < 1024
+    ? { height: '100vh', minHeight: '100vh' }
+    : { height: `calc(100vh * ${steps.length})` };
+
+  // Einheitliche Styles für time-badge auf Mobile
+  const timeBadgeClass = "time-badge bg-neutral-800 text-white/80 rounded-full px-4 py-2 text-xs font-semibold inline-block mx-auto min-w-[220px]";
 
   if (!isMounted) {
     return (
@@ -139,10 +151,82 @@ export default function StepsSection() {
     <section
       id="steps"
       ref={sectionRef}
-      style={{ height: `calc(100vh * ${steps.length})` }}
+      style={sectionStyle}
       className="relative bg-[#101415]"
     >
-      <div className="sticky top-0 h-screen flex items-center">
+      {/* Mobile Ansicht: Swipe-Carousel */}
+      <div className="lg:hidden h-screen min-h-screen w-screen flex flex-col justify-between" style={{ position: 'relative', zIndex: 10, padding: 0, margin: 0 }}>
+        {/* Oberer Bereich: Text + Button */}
+        <div className="flex flex-col justify-start px-4 pt-2 pb-2" style={{ minHeight: '32vh' }}>
+          <h2 className="text-white text-2xl xs:text-3xl font-extrabold mb-3 tracking-tight drop-shadow-lg leading-tight text-center">
+            🚀 In 4 Schritten zu mehr Reichweite, qualifizierten Leads & planbarem Wachstum
+          </h2>
+          <p className="text-white/80 text-base mb-4 text-center">
+            Mit professionellen Kurzvideos als Einstieg in die Content-Strategie
+          </p>
+          <div className="flex justify-center">
+            <Link
+              href="/kontakt"
+              className="bg-white text-[#0f1819] font-bold rounded-full px-6 py-2.5 shadow-md hover:scale-105 hover:shadow-xl transition-all text-base font-sans focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95"
+            >
+              Erstgespräch buchen
+            </Link>
+          </div>
+        </div>
+        {/* Unterer Bereich: Step-Karte + Progressbar + Swipe-Hinweis */}
+        <div className="flex flex-col justify-start pb-2" style={{ minHeight: '60vh' }}>
+          {/* Progressbar */}
+          <div className="w-full h-3 bg-white/10 rounded-full mt-2 mb-4 overflow-hidden">
+            <div
+              className="h-full"
+              style={{
+                width: `${((activeStep + 1) / steps.length) * 100}%`,
+                background: "#d4af37",
+              }}
+              aria-valuenow={activeStep + 1}
+              aria-valuemin={1}
+              aria-valuemax={steps.length}
+              role="progressbar"
+            ></div>
+          </div>
+          <SwipeableViews
+            index={activeStep}
+            onChangeIndex={setActiveStep}
+            enableMouseEvents={true}
+            resistance={true}
+            style={{ width: '100%', maxWidth: 420, margin: '0 auto', paddingLeft: 12, paddingRight: 12 }}
+            containerStyle={{ height: '100%' }}
+          >
+            {steps.map((step, idx) => (
+              <div key={idx} className="card bg-[#0f1819] bg-opacity-90 backdrop-blur-lg p-4 rounded-2xl shadow-xl border border-white/10 min-h-[180px] flex flex-col justify-between animate-fade-in-up" style={{ height: '100%', maxWidth: 340, margin: '0 auto' }}>
+                <div className="step-icon mb-4 text-white bg-opacity-100">
+                  {step.icon}
+                </div>
+                <h3 className="font-bold text-lg mb-2 text-white drop-shadow-lg text-left">
+                  Schritt {step.number} - {step.title}
+                </h3>
+                <p className="text-white/80 text-base leading-relaxed mb-4 text-left">
+                  {step.description}
+                </p>
+                {step.timeSpent && (
+                  <div className={timeBadgeClass}>
+                    DEIN ZEITAUFWAND: {step.timeSpent}
+                  </div>
+                )}
+              </div>
+            ))}
+          </SwipeableViews>
+          {/* Swipe-Hinweis */}
+          <div className="flex items-center justify-center mt-3 select-none pointer-events-none">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="mr-2 animate-bounce-arrow">
+              <path d="M8 14h12M16 10l4 4-4 4" stroke="#d4af37" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-white/70 text-sm font-medium">Wische nach links oder rechts</span>
+          </div>
+        </div>
+      </div>
+      {/* Desktop Ansicht */}
+      <div className="hidden lg:flex sticky top-0 h-screen items-center">
         {/* Linke Seite */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 lg:px-16">
           <h2 className="text-white text-3xl md:text-5xl font-extrabold mb-6 tracking-tight drop-shadow-lg leading-tight">
@@ -162,7 +246,7 @@ export default function StepsSection() {
           </div>
         </div>
         {/* Rechte Seite */}
-        <div className="hidden lg:flex w-1/2 items-center justify-center">
+        <div className="w-1/2 items-center justify-center flex">
           <div className="w-full max-w-xl flex flex-row items-center relative">
             {/* Karte */}
             <div className="flex-1">
@@ -188,7 +272,7 @@ export default function StepsSection() {
                       {steps[activeStep].description}
                     </p>
                     {steps[activeStep].timeSpent && (
-                      <div className="time-badge bg-neutral-800 text-white/80 rounded-full px-4 py-2 text-xs font-semibold inline-block">
+                      <div className={timeBadgeClass}>
                         DEIN ZEITAUFWAND: {steps[activeStep].timeSpent}
                       </div>
                     )}
@@ -212,53 +296,6 @@ export default function StepsSection() {
                 ></div>
               </div>
             </div>
-          </div>
-        </div>
-        {/* Mobile: Progressbar unter der Karte und animierter Textwechsel */}
-        <div className="w-full h-3 bg-white/10 rounded-full mt-8 overflow-hidden lg:hidden">
-          <div
-            className="h-full"
-            style={{
-              width: `${((activeStep + 1) / steps.length) * 100}%`,
-              background: "#d4af37",
-            }}
-            aria-valuenow={activeStep + 1}
-            aria-valuemin={1}
-            aria-valuemax={steps.length}
-            role="progressbar"
-          ></div>
-        </div>
-        <div className="lg:hidden w-full mt-8">
-          <div className="w-full max-w-xl mx-auto">
-            <SwitchTransition mode="out-in">
-              <CSSTransition
-                key={activeStep}
-                timeout={350}
-                classNames="fade-step"
-                nodeRef={cardRefMobile}
-              >
-                <div
-                  ref={cardRefMobile}
-                  className="card bg-[#0f1819] bg-opacity-90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/10 min-h-[340px] flex flex-col justify-between"
-                >
-                  <div className="step-icon mb-4 text-white bg-opacity-100">
-                    {steps[activeStep].icon}
-                  </div>
-                  <h3 className="font-bold text-xl mb-2 text-white drop-shadow-lg">
-                    Schritt {steps[activeStep].number} -{" "}
-                    {steps[activeStep].title}
-                  </h3>
-                  <p className="text-white/80 text-base leading-relaxed mb-4">
-                    {steps[activeStep].description}
-                  </p>
-                  {steps[activeStep].timeSpent && (
-                    <div className="time-badge bg-neutral-800 text-white/80 rounded-full px-4 py-2 text-xs font-semibold inline-block">
-                      DEIN ZEITAUFWAND: {steps[activeStep].timeSpent}
-                    </div>
-                  )}
-                </div>
-              </CSSTransition>
-            </SwitchTransition>
           </div>
         </div>
       </div>
