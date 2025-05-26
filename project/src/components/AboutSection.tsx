@@ -4,9 +4,9 @@ import Image from "next/image";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="pt-20 pb-12">
-      <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-start gap-8">
-        <div className="flex flex-col items-center flex-shrink-0">
+    <section id="about" className="pt-20 pb-12 px-6 sm:px-8 md:px-0">
+      <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8 text-center md:text-left">
+        <div className="flex flex-col items-center flex-shrink-0 w-full md:w-auto">
           <div className="w-48 h-56 bg-neutral-700 rounded-2xl mb-2 overflow-hidden relative shadow-lg">
             <Image
               src="/images/michael_truessel_portrait.png"
@@ -27,7 +27,7 @@ export default function AboutSection() {
             </span>
           </div>
         </div>
-        <div>
+        <div className="md:text-left text-center px-6 sm:px-8 md:px-0">
           <SectionTitle>
             Über{" "}
             <span className="bg-gradient-to-r from-[#d4af37] to-[#f5f7fa] bg-clip-text text-transparent">

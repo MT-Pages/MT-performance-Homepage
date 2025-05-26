@@ -2,18 +2,36 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileNavRef = useRef<HTMLDivElement>(null);
+
+  // Fokus zurück auf Menü-Button, wenn Menü schließt
+  useEffect(() => {
+    if (!isMenuOpen) {
+      menuButtonRef.current?.focus();
+    }
+    // inert-Attribut manuell setzen, weil React es nicht direkt unterstützt
+    if (mobileNavRef.current) {
+      if (!isMenuOpen) {
+        mobileNavRef.current.setAttribute("inert", "");
+      } else {
+        mobileNavRef.current.removeAttribute("inert");
+      }
+    }
+  }, [isMenuOpen]);
 
   // Smooth scroll handler
   const handleScrollToAbout = () => {
     const section = document.getElementById("about");
+    const header = document.getElementById("site-header");
+    const headerHeight = header ? header.offsetHeight : 0;
     if (section) {
-      const yOffset = -90; // Passe diesen Wert ggf. an die Höhe deines Headers an
       const y =
-        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        section.getBoundingClientRect().top + window.pageYOffset - headerHeight;
       window.scrollTo({ top: y, behavior: "smooth" });
       setIsMenuOpen(false);
     }
@@ -21,10 +39,11 @@ export default function Header() {
 
   const handleScrollToTestimonials = () => {
     const section = document.getElementById("testimonials");
+    const header = document.getElementById("site-header");
+    const headerHeight = header ? header.offsetHeight : 0;
     if (section) {
-      const yOffset = -90;
       const y =
-        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        section.getBoundingClientRect().top + window.pageYOffset - headerHeight;
       window.scrollTo({ top: y, behavior: "smooth" });
       setIsMenuOpen(false);
     }
@@ -32,17 +51,18 @@ export default function Header() {
 
   const handleScrollToSteps = () => {
     const section = document.getElementById("steps");
+    const header = document.getElementById("site-header");
+    const headerHeight = header ? header.offsetHeight : 0;
     if (section) {
-      const yOffset = -90;
       const y =
-        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        section.getBoundingClientRect().top + window.pageYOffset - headerHeight;
       window.scrollTo({ top: y, behavior: "smooth" });
       setIsMenuOpen(false);
     }
   };
 
   return (
-    <header className="fixed w-full bg-[#0f1819] z-50">
+    <header id="site-header" className="fixed w-full bg-[#0f1819] z-50">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-1 flex items-center min-h-[48px] relative">
         {/* Logo - Left */}
         <div className="flex-shrink-0 z-10">
@@ -109,6 +129,7 @@ export default function Header() {
           </div>
           {/* Mobile menu button */}
           <button
+            ref={menuButtonRef}
             className="flex items-center"
             style={{ zIndex: 11 }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -140,6 +161,7 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       <div
+        ref={mobileNavRef}
         className={`lg:hidden absolute top-full left-0 right-0 bg-[#0f1819] shadow-lg px-4 transition-all duration-500 ease-in-out overflow-hidden z-40
           ${
             isMenuOpen

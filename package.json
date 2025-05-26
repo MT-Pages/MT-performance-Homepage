@@ -1,9 +1,6 @@
 {
   "dependencies": {
-    "react-responsive": "^10.0.1",
-    "react-swipeable-views": "^0.14.0"
-  },
-  "devDependencies": {
-    "@types/react-swipeable-views": "^0.13.6"
+    "embla-carousel-react": "^8.6.0",
+    "react-responsive": "^10.0.1"
   }
 }
