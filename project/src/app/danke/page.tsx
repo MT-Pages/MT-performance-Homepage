@@ -1,13 +1,17 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Plyr from "@/components/PlyrWrapper";
 import { motion } from "framer-motion";
+import { HiSpeakerWave } from "react-icons/hi2";
 
 export default function DankePage() {
+  const [isMuted, setIsMuted] = useState(true);
+  const [showUnmuteOverlay, setShowUnmuteOverlay] = useState(true);
+
   useEffect(() => {
     // Meta Pixel Event für Conversion Tracking (falls noch nicht gefeuert)
     if (typeof window !== "undefined") {
@@ -23,6 +27,12 @@ export default function DankePage() {
       }
     }
   }, []);
+
+  // Unmute-Handler
+  const handleUnmute = () => {
+    setIsMuted(false);
+    setShowUnmuteOverlay(false);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#101415]">
@@ -42,7 +52,7 @@ export default function DankePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              🎉 Perfekt! Dein Termin ist gebucht
+              🎉 Perfekt! Dein Termin wurde gebucht
             </motion.h1>
           </motion.div>
 
@@ -54,6 +64,31 @@ export default function DankePage() {
             transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
           >
             <div className="overflow-hidden rounded-2xl w-80 md:w-96 lg:w-[28rem] aspect-[16/9] bg-neutral-700 relative shadow-lg">
+              {/* Overlay-Button */}
+              {showUnmuteOverlay && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  onClick={handleUnmute}
+                  className="absolute inset-0 z-10 flex flex-col items-center justify-center w-full h-full bg-black/40 backdrop-blur-[2px] rounded-2xl group"
+                  aria-label="Ton aktivieren"
+                  tabIndex={0}
+                >
+                  <span className="flex flex-col items-center">
+                    <span
+                      className="rounded-full bg-[#d4af37] border-2 border-white shadow-lg shadow-[#d4af37]/30 ring-2 ring-[#d4af37]/20 group-hover:scale-105 group-active:scale-95 transition-all duration-200 flex items-center justify-center"
+                      style={{ width: 64, height: 64, boxShadow: '0 0 16px 4px #d4af3788, 0 2px 16px 0 #0006' }}
+                    >
+                      <HiSpeakerWave size={28} color="white" />
+                    </span>
+                    <span className="text-white text-base font-semibold mt-2">
+                      Ton aktivieren
+                    </span>
+                  </span>
+                </motion.button>
+              )}
               <Plyr
                 source={{
                   type: 'video',
@@ -65,8 +100,8 @@ export default function DankePage() {
                   ],
                 }}
                 options={{
-                  autoplay: false,
-                  muted: false,
+                  autoplay: true,
+                  muted: isMuted,
                   controls: [
                     'play-large',
                     'play',

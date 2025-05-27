@@ -41,21 +41,19 @@ export default function KontaktPage() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">
-              🚀 Lass uns dein Wachstum planen
+              Werde Marktführer in deiner Region
             </h1>
             <p className="text-white/80 text-lg mb-8">
-              Buche jetzt dein kostenloses Erstgespräch und erfahre, wie du mit
-              professionellen Kurzvideos mehr Reichweite und qualifizierte Leads
-              generierst.
+              Buche dir jetzt dein kostenloses Erstgespräch
             </p>
           </div>
 
           {/* Calendly Widget */}
-          <div className="mb-12">
+          <div className="calendly-widget-wrapper mb-4">
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/michaelbusinessch/erstgespraech?primary_color=d4af37&embed_domain=localhost&embed_type=Inline"
-              style={{ minWidth: "320px", height: "700px" }}
+              style={{ minWidth: "320px", height: "1000px" }}
             ></div>
           </div>
 
@@ -89,43 +87,40 @@ export default function KontaktPage() {
       
       {/* CSS um interne Scrollbar zu entfernen */}
       <style jsx global>{`
+        .calendly-inline-widget,
         .calendly-inline-widget iframe {
           overflow: hidden !important;
-          scrollbar-width: none !important;
-          -ms-overflow-style: none !important;
+          height: 100% !important;
+          min-height: 1000px !important;
+          max-height: 1000px !important;
         }
-        
-        .calendly-inline-widget iframe::-webkit-scrollbar {
-          display: none !important;
+        .calendly-inline-widget iframe {
+          pointer-events: auto;
+          width: 100% !important;
+          border: none !important;
         }
-        
+        @media (max-width: 600px) {
+          .calendly-widget-wrapper {
+            border-radius: 1.5rem !important;
+            overflow: hidden !important;
+          }
+          .calendly-inline-widget,
+          .calendly-inline-widget iframe {
+            border-radius: 0 !important;
+          }
+          .calendly-inline-widget,
+          .calendly-inline-widget iframe {
+            min-height: 900px !important;
+            max-height: 900px !important;
+          }
+        }
         .calendly-popup-content {
           overflow: visible !important;
         }
-        
-        /* Versteckt Scrollbars im Widget */
-        .calendly-inline-widget {
-          overflow: hidden !important;
-          scrollbar-width: none !important;
-          -ms-overflow-style: none !important;
-        }
-        
-        .calendly-inline-widget::-webkit-scrollbar {
-          display: none !important;
-        }
-        
-        .calendly-inline-widget iframe body {
-          overflow: visible !important;
-          scrollbar-width: none !important;
-          -ms-overflow-style: none !important;
-        }
-        
-        /* Alle möglichen Scrollbar-Selektoren */
         .calendly-inline-widget * {
           scrollbar-width: none !important;
           -ms-overflow-style: none !important;
         }
-        
         .calendly-inline-widget *::-webkit-scrollbar {
           display: none !important;
         }
