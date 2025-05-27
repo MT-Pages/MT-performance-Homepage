@@ -218,7 +218,7 @@ export default function StepsSection() {
           <div
             ref={emblaRef}
             className="embla overflow-hidden w-full max-w-[420px] mx-auto"
-            style={{ height: "100%" }}
+            style={{ height: 260 }}
           >
             <div className="embla__container flex" style={{ height: "100%" }}>
               {steps.map((step, idx) => (
@@ -257,27 +257,21 @@ export default function StepsSection() {
               ))}
             </div>
           </div>
-          {/* Swipe-Hinweis entfernt */}
-          {/* <div className="flex items-center justify-center mt-3 select-none pointer-events-none">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 28 28"
-              fill="none"
-              className="mr-2 animate-bounce-arrow"
-            >
-              <path
-                d="M8 14h12M16 10l4 4-4 4"
-                stroke="#d4af37"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+          {/* Dot-Indicator für Mobile - jetzt direkt unter dem Carousel, optisch direkt unter der Karte */}
+          <div className="flex items-center justify-center mt-5 gap-2 select-none" aria-label="Schritt-Navigation">
+            {steps.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                aria-label={`Gehe zu Schritt ${idx + 1}`}
+                aria-current={activeStep === idx ? "step" : undefined}
+                tabIndex={0}
+                onClick={() => emblaApi && emblaApi.scrollTo(idx)}
+                className={`transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-400/60 focus:ring-offset-2 focus:ring-offset-[#101415] ${activeStep === idx ? "bg-white shadow-md scale-105" : "bg-neutral-700/70"} w-2.5 h-2.5 border-none`}
+                style={{ boxShadow: activeStep === idx ? "0 0 0 2.5px rgba(255,255,255,0.10)" : undefined }}
               />
-            </svg>
-            <span className="text-white/70 text-sm font-medium">
-              Wische nach links oder rechts
-            </span>
-          </div> */}
+            ))}
+          </div>
         </div>
       </div>
       {/* Desktop Ansicht */}

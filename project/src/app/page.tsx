@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 
 // Dynamically import components
 const Header = dynamic(() => import("@/components/Header"), { ssr: true });
@@ -19,6 +20,29 @@ const AboutSection = dynamic(() => import("@/components/AboutSection"));
 const CtaSection = dynamic(() => import("@/components/CtaSection"));
 
 export default function Home() {
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.location.hash) return;
+    const id = window.location.hash.replace("#", "");
+    let tries = 0;
+    const maxTries = 10;
+    const scrollToSection = () => {
+      const section = document.getElementById(id);
+      const header = document.getElementById("site-header");
+      const headerHeight = header ? header.offsetHeight : 0;
+      if (section) {
+        const y =
+          section.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        window.scrollTo({ top: y, behavior: "smooth" });
+        return;
+      }
+      if (tries < maxTries) {
+        tries++;
+        setTimeout(scrollToSection, 100);
+      }
+    };
+    scrollToSection();
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />

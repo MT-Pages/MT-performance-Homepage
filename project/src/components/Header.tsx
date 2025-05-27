@@ -3,11 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileNavRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   // Fokus zurück auf Menü-Button, wenn Menü schließt
   useEffect(() => {
@@ -61,6 +63,9 @@ export default function Header() {
     }
   };
 
+  // Hilfsfunktion: Prüft, ob wir auf der Hauptseite sind
+  const isHome = pathname === "/";
+
   return (
     <header id="site-header" className="fixed w-full bg-[#0f1819] z-50">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-1 flex items-center min-h-[48px] relative">
@@ -81,27 +86,52 @@ export default function Header() {
         {/* Desktop Navigation - Center absolut mittig */}
         <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <nav className="flex items-center gap-8">
-            <button
-              type="button"
-              onClick={handleScrollToAbout}
-              className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
-            >
-              Über mich
-            </button>
-            <button
-              type="button"
-              onClick={handleScrollToTestimonials}
-              className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
-            >
-              Kundenstimmen
-            </button>
-            <button
-              type="button"
-              onClick={handleScrollToSteps}
-              className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
-            >
-              So arbeiten wir
-            </button>
+            {isHome ? (
+              <>
+                <button
+                  type="button"
+                  onClick={handleScrollToAbout}
+                  className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
+                >
+                  Über mich
+                </button>
+                <button
+                  type="button"
+                  onClick={handleScrollToTestimonials}
+                  className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
+                >
+                  Kundenstimmen
+                </button>
+                <button
+                  type="button"
+                  onClick={handleScrollToSteps}
+                  className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
+                >
+                  So arbeiten wir
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/#about"
+                  className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
+                >
+                  Über mich
+                </Link>
+                <Link
+                  href="/#testimonials"
+                  className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
+                >
+                  Kundenstimmen
+                </Link>
+                <Link
+                  href="/#steps"
+                  className="text-white hover:text-gray-300 font-medium transition-colors text-base bg-transparent border-none outline-none cursor-pointer"
+                >
+                  So arbeiten wir
+                </Link>
+              </>
+            )}
           </nav>
         </div>
 
@@ -175,27 +205,55 @@ export default function Header() {
         aria-hidden={!isMenuOpen}
       >
         <nav className="flex flex-col space-y-6">
-          <button
-            type="button"
-            onClick={handleScrollToAbout}
-            className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
-          >
-            Über mich
-          </button>
-          <button
-            type="button"
-            onClick={handleScrollToTestimonials}
-            className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
-          >
-            Kundenstimmen
-          </button>
-          <button
-            type="button"
-            onClick={handleScrollToSteps}
-            className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
-          >
-            So arbeiten wir
-          </button>
+          {isHome ? (
+            <>
+              <button
+                type="button"
+                onClick={handleScrollToAbout}
+                className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
+              >
+                Über mich
+              </button>
+              <button
+                type="button"
+                onClick={handleScrollToTestimonials}
+                className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
+              >
+                Kundenstimmen
+              </button>
+              <button
+                type="button"
+                onClick={handleScrollToSteps}
+                className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
+              >
+                So arbeiten wir
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/#about"
+                className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Über mich
+              </Link>
+              <Link
+                href="/#testimonials"
+                className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Kundenstimmen
+              </Link>
+              <Link
+                href="/#steps"
+                className="text-white hover:text-gray-300 w-full block py-2 text-center text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                So arbeiten wir
+              </Link>
+            </>
+          )}
           <Link
             href="/kontakt"
             className="font-bold transition-colors text-black bg-white px-5 py-2 rounded-full text-base shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-20 whitespace-nowrap text-center mt-4 block mobile-landscape:hidden"
