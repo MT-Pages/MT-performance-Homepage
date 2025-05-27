@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import Plyr from "@/components/PlyrWrapper";
 import { motion } from "framer-motion";
-import { HiSpeakerWave } from "react-icons/hi2";
+import { HiVolumeUp } from "react-icons/hi";
 
 export default function DankePage() {
   const [isMuted, setIsMuted] = useState(true);
@@ -81,7 +81,7 @@ export default function DankePage() {
                       className="rounded-full bg-[#d4af37] border-2 border-white shadow-lg shadow-[#d4af37]/30 ring-2 ring-[#d4af37]/20 group-hover:scale-105 group-active:scale-95 transition-all duration-200 flex items-center justify-center"
                       style={{ width: 64, height: 64, boxShadow: '0 0 16px 4px #d4af3788, 0 2px 16px 0 #0006' }}
                     >
-                      <HiSpeakerWave size={28} color="white" />
+                      <HiVolumeUp size={28} color="white" />
                     </span>
                     <span className="text-white text-base font-semibold mt-2">
                       Ton aktivieren
