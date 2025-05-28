@@ -86,9 +86,32 @@ export default function SolutionSection() {
                     </h3>
                   </div>
 
-                  {/* Icon Circle */}
-                  <div className="relative">
-                    <div className="w-16 h-16 bg-[#d4af37] rounded-full flex items-center justify-center text-white z-10 relative">
+                  {/* Icon Circle + Arrow */}
+                  <div className="relative flex items-center justify-center">
+                    {/* Pfeil (nur auf Desktop sichtbar) */}
+                    <span
+                      className={`hidden md:block absolute ${
+                        step.position === "left"
+                          ? "right-[-70px]"
+                          : "left-[-70px]"
+                      } top-1/2 transform -translate-y-1/2 pointer-events-none select-none`}
+                      aria-hidden="true"
+                    >
+                      {step.position === "left" ? (
+                        // Pfeil nach rechts
+                        <svg width="60" height="24" viewBox="0 0 60 24" fill="none">
+                          <line x1="0" y1="12" x2="50" y2="12" stroke="#d4af37" strokeWidth="4" strokeLinecap="round" />
+                          <polygon points="50,6 60,12 50,18" fill="#d4af37" />
+                        </svg>
+                      ) : (
+                        // Pfeil nach links
+                        <svg width="60" height="24" viewBox="0 0 60 24" fill="none">
+                          <line x1="60" y1="12" x2="10" y2="12" stroke="#d4af37" strokeWidth="4" strokeLinecap="round" />
+                          <polygon points="10,6 0,12 10,18" fill="#d4af37" />
+                        </svg>
+                      )}
+                    </span>
+                    <div className="w-16 h-16 bg-[#d4af37] rounded-full flex items-center justify-center text-white z-10 relative shadow-lg">
                       {step.icon}
                     </div>
                   </div>
