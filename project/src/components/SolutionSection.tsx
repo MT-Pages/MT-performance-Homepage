@@ -13,37 +13,37 @@ const steps = [
   {
     id: 1,
     title: "Terminvereinbarung",
-    icon: <HiOutlineCalendar className="w-6 h-6" />,
+    icon: <HiOutlineCalendar className="w-9 h-9" />,
     position: "right",
   },
   {
     id: 2,
     title: "Leads abtelefonieren / qualifizieren",
-    icon: <HiOutlinePhone className="w-6 h-6" />,
+    icon: <HiOutlinePhone className="w-9 h-9" />,
     position: "left",
   },
   {
     id: 3,
     title: "Bezahlte Werbeanzeigen",
-    icon: <HiOutlineSpeakerphone className="w-6 h-6" />,
+    icon: <HiOutlineSpeakerphone className="w-9 h-9" />,
     position: "right",
   },
   {
     id: 4,
     title: "Website / Landingpage",
-    icon: <HiOutlineDesktopComputer className="w-6 h-6" />,
+    icon: <HiOutlineDesktopComputer className="w-9 h-9" />,
     position: "left",
   },
   {
     id: 5,
     title: "Social Media Management",
-    icon: <HiOutlineHashtag className="w-6 h-6" />,
+    icon: <HiOutlineHashtag className="w-9 h-9" />,
     position: "right",
   },
   {
     id: 6,
     title: "Medienproduktion",
-    icon: <HiOutlineCamera className="w-6 h-6" />,
+    icon: <HiOutlineCamera className="w-9 h-9" />,
     position: "left",
   },
 ];
@@ -92,26 +92,26 @@ export default function SolutionSection() {
                     <span
                       className={`hidden md:block absolute ${
                         step.position === "left"
-                          ? "right-[-70px]"
-                          : "left-[-70px]"
+                          ? "right-[-110px]"
+                          : "left-[-110px]"
                       } top-1/2 transform -translate-y-1/2 pointer-events-none select-none`}
                       aria-hidden="true"
                     >
                       {step.position === "left" ? (
-                        // Pfeil nach rechts
-                        <svg width="60" height="24" viewBox="0 0 60 24" fill="none">
-                          <line x1="0" y1="12" x2="50" y2="12" stroke="#d4af37" strokeWidth="4" strokeLinecap="round" />
-                          <polygon points="50,6 60,12 50,18" fill="#d4af37" />
+                        // Pfeil nach rechts (länger)
+                        <svg width="100" height="24" viewBox="0 0 100 24" fill="none">
+                          <line x1="0" y1="12" x2="85" y2="12" stroke="#d4af37" strokeWidth="4" strokeLinecap="round" />
+                          <polygon points="85,6 100,12 85,18" fill="#d4af37" />
                         </svg>
                       ) : (
-                        // Pfeil nach links
-                        <svg width="60" height="24" viewBox="0 0 60 24" fill="none">
-                          <line x1="60" y1="12" x2="10" y2="12" stroke="#d4af37" strokeWidth="4" strokeLinecap="round" />
-                          <polygon points="10,6 0,12 10,18" fill="#d4af37" />
+                        // Pfeil nach links (länger)
+                        <svg width="100" height="24" viewBox="0 0 100 24" fill="none">
+                          <line x1="100" y1="12" x2="15" y2="12" stroke="#d4af37" strokeWidth="4" strokeLinecap="round" />
+                          <polygon points="15,6 0,12 15,18" fill="#d4af37" />
                         </svg>
                       )}
                     </span>
-                    <div className="w-16 h-16 bg-[#d4af37] rounded-full flex items-center justify-center text-white z-10 relative shadow-lg">
+                    <div className="w-20 h-20 bg-[#d4af37] rounded-full flex items-center justify-center text-white z-10 relative shadow-lg">
                       {step.icon}
                     </div>
                   </div>
