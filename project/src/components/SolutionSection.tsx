@@ -63,8 +63,8 @@ export default function SolutionSection() {
         </h2>
 
         <div className="mt-8 relative glasmorphism rounded-2xl shadow-xl p-4 md:p-6">
-          {/* Vertical Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-white/10 pointer-events-none" />
+          {/* Vertical Line - jetzt kürzer */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-8 bottom-8 h-auto w-0.5 bg-white/10 pointer-events-none" />
 
           <div className="relative">
             {steps.map((step, index) => (
