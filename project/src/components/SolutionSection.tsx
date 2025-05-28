@@ -129,12 +129,26 @@ export default function SolutionSection() {
                       tabIndex={0}
                     >
                       {step.icon}
-                      {/* Tooltip/Popover */}
-                      <div className="absolute left-1/2 top-full mt-4 w-64 -translate-x-1/2 z-30 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity duration-300">
-                        <div className="bg-white/90 text-[#0f1819] rounded-2xl shadow-xl p-4 text-sm font-semibold border border-white/30 backdrop-blur-md glasmorphism">
+                      {/* Tooltip/Popover - jetzt invertiert seitlich */}
+                      <div
+                        className={`absolute top-1/2 transform -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity duration-300
+                          ${step.position === "left"
+                            ? "right-full mr-6 text-right"
+                            : "left-full ml-6 text-left"}
+                        `}
+                        style={{ minWidth: 220, maxWidth: 280 }}
+                      >
+                        <div className="bg-white/90 text-[#0f1819] rounded-2xl shadow-xl p-4 text-sm font-semibold border border-white/30 backdrop-blur-md glasmorphism relative">
                           {step.description}
+                          {/* Tooltip-Ecke seitlich invertiert */}
+                          <div
+                            className={`w-4 h-4 bg-white/90 absolute top-1/2 -translate-y-1/2 rotate-45 border-white/30
+                              ${step.position === "left"
+                                ? "-right-2 border-r border-t"
+                                : "-left-2 border-l border-b"}
+                            `}
+                          />
                         </div>
-                        <div className="w-4 h-4 bg-white/90 rotate-45 absolute left-1/2 -translate-x-1/2 -top-2 border-l border-t border-white/30" />
                       </div>
                     </motion.div>
                   </div>
