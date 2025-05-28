@@ -56,13 +56,13 @@ const steps = [
 
 export default function SolutionSection() {
   return (
-    <section className="pt-8 pb-12">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-white text-3xl md:text-4xl font-extrabold mb-6 tracking-tight drop-shadow-lg font-sans text-center">
+    <section className="pt-6 pb-8">
+      <div className="max-w-4xl mx-auto px-2">
+        <h2 className="text-white text-2xl md:text-3xl font-extrabold mb-4 tracking-tight drop-shadow-lg font-sans text-center">
           Meine Lösung um Sichtbarkeit messbar zu machen
         </h2>
 
-        <div className="mt-12 relative glasmorphism rounded-3xl shadow-2xl p-6 md:p-12">
+        <div className="mt-8 relative glasmorphism rounded-2xl shadow-xl p-4 md:p-6">
           {/* Vertical Line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-white/10 pointer-events-none" />
 
@@ -70,11 +70,11 @@ export default function SolutionSection() {
             {steps.map((step, index) => (
               <motion.div
                 key={step.id}
-                className="relative mb-16 last:mb-0"
+                className="relative mb-10 last:mb-0"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.7, delay: index * 0.15 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
               >
                 <div
                   className={`flex items-center ${
@@ -87,65 +87,61 @@ export default function SolutionSection() {
                       step.position === "left" ? "pr-0 text-right" : "pl-0"
                     }`}
                   >
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className="text-lg font-bold text-white">
                       {step.title}
                     </h3>
                   </div>
 
                   {/* Icon Circle + Arrow + Tooltip */}
                   <div className="relative flex items-center justify-center group">
-                    {/* Pfeil (animiert, nur auf Desktop sichtbar) */}
-                    <motion.span
+                    {/* Pfeil (statisch, ohne Animation) */}
+                    <span
                       className={`hidden md:block absolute ${
                         step.position === "left"
-                          ? "right-[-110px]"
-                          : "left-[-110px]"
+                          ? "right-[-80px]"
+                          : "left-[-80px]"
                       } top-1/2 transform -translate-y-1/2 pointer-events-none select-none`}
                       aria-hidden="true"
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      transition={{ duration: 0.7, delay: 0.2 + index * 0.1 }}
-                      style={{ originX: step.position === "left" ? 0 : 1 }}
                     >
                       {step.position === "left" ? (
-                        // Pfeil nach rechts (länger)
-                        <svg width="100" height="24" viewBox="0 0 100 24" fill="none">
-                          <line x1="0" y1="12" x2="85" y2="12" stroke="#d4af37" strokeWidth="4" strokeLinecap="round" />
-                          <polygon points="85,6 100,12 85,18" fill="#d4af37" />
+                        // Pfeil nach rechts (kürzer)
+                        <svg width="70" height="18" viewBox="0 0 70 18" fill="none">
+                          <line x1="0" y1="9" x2="60" y2="9" stroke="#d4af37" strokeWidth="3" strokeLinecap="round" />
+                          <polygon points="60,4 70,9 60,14" fill="#d4af37" />
                         </svg>
                       ) : (
-                        // Pfeil nach links (länger)
-                        <svg width="100" height="24" viewBox="0 0 100 24" fill="none">
-                          <line x1="100" y1="12" x2="15" y2="12" stroke="#d4af37" strokeWidth="4" strokeLinecap="round" />
-                          <polygon points="15,6 0,12 15,18" fill="#d4af37" />
+                        // Pfeil nach links (kürzer)
+                        <svg width="70" height="18" viewBox="0 0 70 18" fill="none">
+                          <line x1="70" y1="9" x2="10" y2="9" stroke="#d4af37" strokeWidth="3" strokeLinecap="round" />
+                          <polygon points="10,4 0,9 10,14" fill="#d4af37" />
                         </svg>
                       )}
-                    </motion.span>
+                    </span>
                     {/* Icon mit Tooltip/Popover */}
                     <motion.div
-                      className="w-20 h-20 bg-[#d4af37] rounded-full flex items-center justify-center text-white z-10 relative shadow-lg cursor-pointer group"
+                      className="w-14 h-14 bg-[#d4af37] rounded-full flex items-center justify-center text-white z-10 relative shadow-lg cursor-pointer group"
                       whileHover={{ scale: 1.08, boxShadow: "0 0 0 8px #d4af3740" }}
                       whileTap={{ scale: 0.97 }}
                       tabIndex={0}
                     >
-                      {step.icon}
+                      {React.cloneElement(step.icon, { className: "w-7 h-7" })}
                       {/* Tooltip/Popover - jetzt invertiert seitlich */}
                       <div
                         className={`absolute top-1/2 transform -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity duration-300
                           ${step.position === "left"
-                            ? "right-full mr-6 text-right"
-                            : "left-full ml-6 text-left"}
+                            ? "right-full mr-4 text-right"
+                            : "left-full ml-4 text-left"}
                         `}
-                        style={{ minWidth: 220, maxWidth: 280 }}
+                        style={{ minWidth: 160, maxWidth: 220 }}
                       >
-                        <div className="bg-white/90 text-[#0f1819] rounded-2xl shadow-xl p-4 text-sm font-semibold border border-white/30 backdrop-blur-md glasmorphism relative">
+                        <div className="bg-white/90 text-white rounded-2xl shadow-xl p-3 text-xs font-semibold border border-white/30 backdrop-blur-md glasmorphism relative">
                           {step.description}
                           {/* Tooltip-Ecke seitlich invertiert */}
                           <div
-                            className={`w-4 h-4 bg-white/90 absolute top-1/2 -translate-y-1/2 rotate-45 border-white/30
+                            className={`w-3 h-3 bg-white/90 absolute top-1/2 -translate-y-1/2 rotate-45 border-white/30
                               ${step.position === "left"
-                                ? "-right-2 border-r border-t"
-                                : "-left-2 border-l border-b"}
+                                ? "-right-1.5 border-r border-t"
+                                : "-left-1.5 border-l border-b"}
                             `}
                           />
                         </div>
