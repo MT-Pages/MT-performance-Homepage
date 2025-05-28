@@ -1,12 +1,13 @@
 import React from "react";
-import SectionTitle from "./SectionTitle";
 import Plyr from "./PlyrWrapper";
 
 export default function TestimonialSection() {
   return (
     <section id="testimonials" className="py-12">
       <div className="max-w-2xl mx-auto text-center">
-        <SectionTitle>Erfahrung meiner Kunden</SectionTitle>
+        <h2 className="text-white text-3xl md:text-4xl font-extrabold mb-6 tracking-tight drop-shadow-lg font-sans">
+          Erfahrung meiner Kunden
+        </h2>
         <div className="flex flex-col items-center">
           <div className="overflow-hidden rounded-2xl w-52 min-w-[180px] md:w-64 lg:w-80 aspect-[9/16] bg-neutral-700 relative shadow-lg group mb-4">
             <Plyr

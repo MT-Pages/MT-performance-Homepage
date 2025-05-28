@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import SectionTitle from "./SectionTitle";
 
 export default function ComparisonTableSection() {
   const CheckIcon = (
@@ -65,7 +64,7 @@ export default function ComparisonTableSection() {
   return (
     <section className="pt-20 pb-20">
       <div className="w-screen max-w-none px-0 md:max-w-4xl md:mx-auto md:px-4">
-        <SectionTitle>
+        <h2 className="text-white text-3xl md:text-4xl font-extrabold mb-6 tracking-tight drop-shadow-lg font-sans">
           <span className="block text-3xl md:text-4xl font-extrabold text-center">
             🧩 Leistungsvergleich:
           </span>
@@ -73,7 +72,7 @@ export default function ComparisonTableSection() {
             Einzelne Anbieter vs. Festangestellte vs. Michael Trüssel
             Performance
           </span>
-        </SectionTitle>
+        </h2>
         <div className="relative">
           <span
             className={`block md:hidden text-center mb-2 flex items-center justify-center animate-fade-in transition-opacity duration-500 ${

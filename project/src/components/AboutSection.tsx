@@ -1,5 +1,4 @@
 import React from "react";
-import SectionTitle from "./SectionTitle";
 import Image from "next/image";
 
 export default function AboutSection() {
@@ -27,13 +26,13 @@ export default function AboutSection() {
             </span>
           </div>
         </div>
-        <div className="md:text-left text-center px-6 sm:px-8 md:px-0">
-          <SectionTitle>
+        <div className="md:text-left text-left px-6 sm:px-8 md:px-0">
+          <h2 className="text-white text-3xl md:text-4xl font-extrabold mb-6 tracking-tight drop-shadow-lg font-sans">
             Über{" "}
             <span className="bg-gradient-to-r from-[#d4af37] to-[#f5f7fa] bg-clip-text text-transparent">
               Michael Trüssel
             </span>
-          </SectionTitle>
+          </h2>
           <p className="text-white mb-2">
             Verkaufen beginnt mit Verstehen. Und Vertrauen beginnt mit
             Sichtbarkeit.

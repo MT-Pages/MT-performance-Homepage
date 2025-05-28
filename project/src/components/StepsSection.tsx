@@ -14,7 +14,7 @@ export default function StepsSection() {
       title: "Kick-off",
       description:
         "Beim gemeinsamen Kick-Off Termin besprechen wir deine ideale Strategie.",
-      timeSpent: "60 Minuten (einmalig)",
+      timeSpent: "30 Minuten (einmalig)",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@ export default function StepsSection() {
   // Section-Height: Desktop = calc(100vh * steps.length), Mobile = h-screen
   const sectionStyle =
     typeof window !== "undefined" && window.innerWidth < 1024
-      ? { height: "80vh", minHeight: "80vh" }
+      ? { height: "auto", minHeight: "auto" }
       : { height: `calc(100vh * ${steps.length})` };
 
   // Einheitliche Styles für time-badge auf Mobile
@@ -170,85 +170,57 @@ export default function StepsSection() {
     >
       {/* Mobile Ansicht: Swipe-Carousel */}
       <div
-        className="lg:hidden h-screen min-h-screen w-screen flex flex-col justify-between pt-32"
+        className="lg:hidden w-screen"
         style={{ position: "relative", zIndex: 10, padding: 0, margin: 0 }}
       >
         {/* Oberer Bereich: Text + Button */}
-        <div
-          className="flex flex-col justify-start px-4 pt-20 pb-0 items-center"
-          style={{ minHeight: "32vh" }}
-        >
-          <div className="w-full max-w-xl">
-            <h2 className="text-white text-2xl xs:text-3xl font-extrabold mb-3 tracking-tight drop-shadow-lg leading-tight text-center md:text-left">
+        <div className="flex flex-col justify-start px-3 xs:px-4 pt-0 pb-0 items-center">
+          <div className="w-full max-w-sm">
+            <h2 className="text-white text-lg xs:text-xl font-extrabold mb-0.5 xs:mb-0.5 tracking-tight drop-shadow-lg leading-tight text-center md:text-left">
               🚀 In 4 Schritten zu mehr Reichweite, qualifizierten Leads &
               planbarem Wachstum
             </h2>
-            <p className="text-white/80 text-base mb-4 text-center md:text-left">
+            <p className="text-white/80 text-xs xs:text-sm mb-0.5 xs:mb-1 text-center md:text-left">
               Mit professionellen Kurzvideos als Einstieg in die
               Content-Strategie
             </p>
             <Link
               href="/kontakt"
-              className="bg-white text-[#0f1819] font-bold rounded-full px-6 py-2.5 shadow-md hover:scale-105 hover:shadow-xl transition-all text-base font-sans focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95 w-full block text-center mt-0"
-              style={{ minWidth: 0, marginTop: 0 }}
+              className="bg-white text-[#0f1819] font-bold rounded-full px-4 py-2 shadow-md hover:scale-105 hover:shadow-xl transition-all text-xs xs:text-sm font-sans focus:outline-none focus:ring-4 focus:ring-cyan-300 active:scale-95 w-full block text-center mt-1 mb-0"
+              style={{ minWidth: 0 }}
             >
               Erstgespräch buchen
             </Link>
+            <div className="mt-8" />
           </div>
         </div>
-        {/* Unterer Bereich: Step-Karte + Progressbar + Swipe-Hinweis */}
-        <div
-          className="flex flex-col justify-start pb-0"
-          style={{ minHeight: "54vh" }}
-        >
-          {/* Progressbar entfernt */}
-          {/* <div className="w-full h-3 bg-white/10 rounded-full mt-2 mb-4 overflow-hidden">
-            <div
-              className="h-full"
-              style={{
-                width: `${((activeStep + 1) / steps.length) * 100}%`,
-                background: "#d4af37",
-              }}
-              aria-valuenow={activeStep + 1}
-              aria-valuemin={1}
-              aria-valuemax={steps.length}
-              role="progressbar"
-            ></div>
-          </div> */}
-          <div
-            ref={emblaRef}
-            className="embla overflow-hidden w-full max-w-[420px] mx-auto"
-            style={{ height: 260 }}
-          >
-            <div className="embla__container flex" style={{ height: "100%" }}>
+        {/* Unterer Bereich: Step-Karte + Dot-Navigation */}
+        <div className="relative">
+          <div ref={emblaRef} className="embla overflow-hidden w-full mx-auto">
+            <div className="embla__container">
               {steps.map((step, idx) => (
                 <div
-                  className="embla__slide flex-shrink-0 w-full px-2"
-                  style={{
-                    height: 260,
-                    minHeight: 220,
-                    maxHeight: 320,
-                    minWidth: 0,
-                    maxWidth: 340,
-                    margin: "0 6px",
-                  }}
+                  className="embla__slide px-3 xs:px-5"
                   key={idx}
                   role="group"
                   aria-roledescription="slide"
                   aria-label={`Schritt ${step.number} von ${steps.length}`}
                 >
-                  <div className="card bg-[#0f1819] bg-opacity-90 backdrop-blur-lg p-4 rounded-2xl shadow-xl border border-white/10 min-h-[220px] max-h-[320px] h-[100%] flex flex-col justify-between animate-fade-in-up">
-                    <div className="step-icon mb-2 text-white bg-opacity-100 flex items-center justify-center">
+                  <div
+                    className="card bg-[#0f1819] bg-opacity-90 backdrop-blur-lg p-3 xs:p-4 rounded-2xl shadow-xl border border-white/10 max-w-sm w-full mx-auto flex flex-col justify-between animate-fade-in-up overflow-auto"
+                    style={{ maxHeight: "60vh", minHeight: 160 }}
+                  >
+                    <div className="step-icon mb-1 xs:mb-2 text-white bg-opacity-100 flex items-center justify-center">
                       {React.cloneElement(step.icon, { className: "w-5 h-5" })}
                     </div>
-                    <h3 className="font-bold text-base mb-1 text-white drop-shadow-lg text-left">
+                    <h3 className="font-bold text-xs xs:text-sm mb-1 text-white drop-shadow-lg text-left">
                       Schritt {step.number} - {step.title}
                     </h3>
-                    <p className="text-white/80 text-sm leading-relaxed mb-2 text-left">
+                    <p className="text-white/80 text-xs xs:text-sm leading-relaxed mb-1 xs:mb-2 text-left">
                       {step.description}
                     </p>
                     {step.timeSpent && (
-                      <div className="bg-neutral-800 text-white/80 rounded-full px-3 py-1.5 text-xs font-semibold inline-block mx-auto min-w-[140px]">
+                      <div className="bg-neutral-800 text-white/80 rounded-full px-2 xs:px-3 py-1 text-xs font-semibold inline-block mx-auto min-w-[90px] xs:min-w-[120px]">
                         DEIN ZEITAUFWAND: {step.timeSpent}
                       </div>
                     )}
@@ -257,8 +229,11 @@ export default function StepsSection() {
               ))}
             </div>
           </div>
-          {/* Dot-Indicator für Mobile - jetzt direkt unter dem Carousel, optisch direkt unter der Karte */}
-          <div className="flex items-center justify-center mt-5 gap-2 select-none" aria-label="Schritt-Navigation">
+          {/* Dot-Indicator für Mobile - vertikal mittig im freien Bereich */}
+          <div
+            className="flex items-center justify-center gap-1 xs:gap-2 select-none mt-6 mb-2"
+            aria-label="Schritt-Navigation"
+          >
             {steps.map((_, idx) => (
               <button
                 key={idx}
@@ -267,8 +242,17 @@ export default function StepsSection() {
                 aria-current={activeStep === idx ? "step" : undefined}
                 tabIndex={0}
                 onClick={() => emblaApi && emblaApi.scrollTo(idx)}
-                className={`transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-400/60 focus:ring-offset-2 focus:ring-offset-[#101415] ${activeStep === idx ? "bg-white shadow-md scale-105" : "bg-neutral-700/70"} w-2.5 h-2.5 border-none`}
-                style={{ boxShadow: activeStep === idx ? "0 0 0 2.5px rgba(255,255,255,0.10)" : undefined }}
+                className={`transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-400/60 focus:ring-offset-2 focus:ring-offset-[#101415] ${
+                  activeStep === idx
+                    ? "bg-white shadow-md scale-105"
+                    : "bg-neutral-700/70"
+                } w-2 h-2 xs:w-2.5 xs:h-2.5 border-none`}
+                style={{
+                  boxShadow:
+                    activeStep === idx
+                      ? "0 0 0 2.5px rgba(255,255,255,0.10)"
+                      : undefined,
+                }}
               />
             ))}
           </div>
@@ -359,6 +343,19 @@ export default function StepsSection() {
           flex: 0 0 100%;
           min-width: 0;
           transition: box-shadow 0.3s;
+        }
+        @media (max-width: 375px) {
+          .embla__slide .card {
+            padding: 10px !important;
+            min-height: 120px !important;
+            font-size: 12px !important;
+          }
+          .embla__slide h3 {
+            font-size: 13px !important;
+          }
+          .embla__slide p {
+            font-size: 11px !important;
+          }
         }
       `}</style>
     </section>
