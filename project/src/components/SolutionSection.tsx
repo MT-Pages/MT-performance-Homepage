@@ -67,93 +67,103 @@ export default function SolutionSection() {
           <div className="absolute left-1/2 transform -translate-x-1/2 top-8 bottom-8 h-auto w-0.5 bg-white/10 pointer-events-none" />
 
           <div className="relative">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.id}
-                className="relative mb-10 last:mb-0"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-              >
-                <div
-                  className={`flex items-center ${
-                    step.position === "left" ? "flex-row-reverse" : "flex-row"
-                  }`}
+            {[...steps].reverse().map((step, index) => {
+              const position = index % 2 === 0 ? "left" : "right";
+              return (
+                <motion.div
+                  key={step.id}
+                  className="relative mb-10 last:mb-0"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
                 >
-                  {/* Content Side */}
-                  <div
-                    className={`w-1/2 ${
-                      step.position === "left" ? "pr-0 text-right" : "pl-0"
-                    }`}
-                  >
-                    <h3 className="text-lg font-bold text-white">
-                      {step.title}
-                    </h3>
-                  </div>
-
-                  {/* Icon Circle + Arrow + Tooltip */}
-                  <div className="relative flex items-center justify-center group">
-                    {/* Pfeil (statisch, ohne Animation) */}
-                    <span
-                      className={`hidden md:block absolute ${
-                        step.position === "left"
-                          ? "right-[-80px]"
-                          : "left-[-80px]"
-                      } top-1/2 transform -translate-y-1/2 pointer-events-none select-none`}
-                      aria-hidden="true"
-                    >
-                      {step.position === "left" ? (
-                        // Pfeil nach rechts (kürzer)
-                        <svg width="70" height="18" viewBox="0 0 70 18" fill="none">
-                          <line x1="0" y1="9" x2="60" y2="9" stroke="#d4af37" strokeWidth="3" strokeLinecap="round" />
-                          <polygon points="60,4 70,9 60,14" fill="#d4af37" />
-                        </svg>
-                      ) : (
-                        // Pfeil nach links (kürzer)
-                        <svg width="70" height="18" viewBox="0 0 70 18" fill="none">
-                          <line x1="70" y1="9" x2="10" y2="9" stroke="#d4af37" strokeWidth="3" strokeLinecap="round" />
-                          <polygon points="10,4 0,9 10,14" fill="#d4af37" />
-                        </svg>
-                      )}
-                    </span>
-                    {/* Icon mit Tooltip/Popover */}
-                    <motion.div
-                      className="w-14 h-14 bg-[#d4af37] rounded-full flex items-center justify-center text-white z-10 relative shadow-lg cursor-pointer group"
-                      whileHover={{ scale: 1.08, boxShadow: "0 0 0 8px #d4af3740" }}
-                      whileTap={{ scale: 0.97 }}
-                      tabIndex={0}
-                    >
-                      {React.cloneElement(step.icon, { className: "w-7 h-7" })}
-                      {/* Tooltip/Popover - jetzt invertiert seitlich */}
-                      <div
-                        className={`absolute top-1/2 transform -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity duration-300
-                          ${step.position === "left"
-                            ? "right-full mr-4 text-right"
-                            : "left-full ml-4 text-left"}
-                        `}
-                        style={{ minWidth: 160, maxWidth: 220 }}
-                      >
-                        <div className="bg-white/90 text-white rounded-2xl shadow-xl p-3 text-xs font-semibold border border-white/30 backdrop-blur-md glasmorphism relative">
-                          {step.description}
-                          {/* Tooltip-Ecke seitlich invertiert */}
-                          <div
-                            className={`w-3 h-3 bg-white/90 absolute top-1/2 -translate-y-1/2 rotate-45 border-white/30
-                              ${step.position === "left"
-                                ? "-right-1.5 border-r border-t"
-                                : "-left-1.5 border-l border-b"}
-                            `}
-                          />
+                  <div className="flex items-center">
+                    {position === "left" ? (
+                      <>
+                        {/* Content + Icon + Pfeil (links) */}
+                        <div className="w-1/2 flex justify-end items-center gap-4">
+                          <h3 className="text-lg font-bold text-white text-right">
+                            {step.title}
+                          </h3>
+                          <div className="relative flex items-center group">
+                            {/* Icon mit Tooltip/Popover */}
+                            <motion.div
+                              className="w-14 h-14 bg-[#d4af37] rounded-full flex items-center justify-center text-white z-10 relative shadow-lg cursor-pointer group"
+                              whileHover={{ scale: 1.08, boxShadow: '0 0 0 8px #d4af3740' }}
+                              whileTap={{ scale: 0.97 }}
+                              tabIndex={0}
+                            >
+                              {React.cloneElement(step.icon, { className: 'w-7 h-7' })}
+                              {/* Tooltip/Popover - jetzt invertiert seitlich */}
+                              <div
+                                className="absolute top-1/2 transform -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity duration-300 right-full mr-4 text-right"
+                                style={{ minWidth: 160, maxWidth: 220 }}
+                              >
+                                <div className="bg-white/90 text-white rounded-2xl shadow-xl p-3 text-xs font-semibold border border-white/30 backdrop-blur-md glasmorphism relative">
+                                  {step.description}
+                                  {/* Tooltip-Ecke seitlich invertiert */}
+                                  <div className="w-3 h-3 bg-white/90 absolute top-1/2 -translate-y-1/2 rotate-45 border-white/30 -right-1.5 border-r border-t" />
+                                </div>
+                              </div>
+                            </motion.div>
+                            {/* Pfeil nach rechts */}
+                            <span className="hidden md:block ml-2" aria-hidden="true">
+                              <svg width="70" height="18" viewBox="0 0 70 18" fill="none">
+                                <line x1="0" y1="9" x2="60" y2="9" stroke="#d4af37" strokeWidth="3" strokeLinecap="round" />
+                                <polygon points="60,4 70,9 60,14" fill="#d4af37" />
+                              </svg>
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    </motion.div>
+                        {/* Empty Side */}
+                        <div className="w-1/2" />
+                      </>
+                    ) : (
+                      <>
+                        {/* Empty Side */}
+                        <div className="w-1/2" />
+                        {/* Icon + Pfeil + Content (rechts) */}
+                        <div className="w-1/2 flex justify-start items-center gap-4">
+                          <div className="relative flex items-center group">
+                            {/* Pfeil nach links */}
+                            <span className="hidden md:block mr-2" aria-hidden="true">
+                              <svg width="70" height="18" viewBox="0 0 70 18" fill="none">
+                                <line x1="70" y1="9" x2="10" y2="9" stroke="#d4af37" strokeWidth="3" strokeLinecap="round" />
+                                <polygon points="10,4 0,9 10,14" fill="#d4af37" />
+                              </svg>
+                            </span>
+                            {/* Icon mit Tooltip/Popover */}
+                            <motion.div
+                              className="w-14 h-14 bg-[#d4af37] rounded-full flex items-center justify-center text-white z-10 relative shadow-lg cursor-pointer group"
+                              whileHover={{ scale: 1.08, boxShadow: '0 0 0 8px #d4af3740' }}
+                              whileTap={{ scale: 0.97 }}
+                              tabIndex={0}
+                            >
+                              {React.cloneElement(step.icon, { className: 'w-7 h-7' })}
+                              {/* Tooltip/Popover - jetzt invertiert seitlich */}
+                              <div
+                                className="absolute top-1/2 transform -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity duration-300 left-full ml-4 text-left"
+                                style={{ minWidth: 160, maxWidth: 220 }}
+                              >
+                                <div className="bg-white/90 text-white rounded-2xl shadow-xl p-3 text-xs font-semibold border border-white/30 backdrop-blur-md glasmorphism relative">
+                                  {step.description}
+                                  {/* Tooltip-Ecke seitlich invertiert */}
+                                  <div className="w-3 h-3 bg-white/90 absolute top-1/2 -translate-y-1/2 rotate-45 border-white/30 -left-1.5 border-l border-b" />
+                                </div>
+                              </div>
+                            </motion.div>
+                          </div>
+                          <h3 className="text-lg font-bold text-white text-left">
+                            {step.title}
+                          </h3>
+                        </div>
+                      </>
+                    )}
                   </div>
-
-                  {/* Empty Side */}
-                  <div className="w-1/2" />
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
