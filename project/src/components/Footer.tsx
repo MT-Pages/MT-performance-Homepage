@@ -29,7 +29,7 @@ export default function Footer() {
 
         {/* Copyright Bereich */}
         <div className="mt-8 text-center text-gray-400 text-sm">
-          <p>© {currentYear} Michael Trüssel Performance</p>
+          <p>Made by Daniele Citran, Eric Huber</p>
         </div>
       </div>
     </footer>
